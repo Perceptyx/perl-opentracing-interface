@@ -1,0 +1,24 @@
+
+=head1 NAME
+
+OpenTracing::Role - API definition for OpenTransport implementations
+
+=head1 DESCRIPTION
+
+=head2 Required Reading
+
+In order to understand the Perl platform API, one must first be familiar with
+L<the OpenTracing project|http://opentracing.io/>
+and
+L<terminology|http://opentracing.io/documentation/pages/spec>
+more generally.
+
+=head1 SYNOPSIS
+
+=head2 Singleton Initialization
+
+    use Package::Alias 'OpenTracing' => 'Perceptyx::OpenTracing';
+    
+    OpenTracing->set_global_tracer( Some::Tracer::Implementation->new( ... ) );
+    
+=cut
