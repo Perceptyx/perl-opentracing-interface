@@ -28,4 +28,4 @@ The interfaces being defined as roles
 ( using [Role::Tiny](https://metacpan.org/pod/Role::Tiny) )
 and use `around` method modifiers, instead of `require`, we do want to wrap the
 method in type checking
-( using [Type::Tiny](https://metacpan.org/pod/Type::Tiny> and friends) ).
+( using [Type::Tiny](https://metacpan.org/pod/Type::Tiny) and friends ).
