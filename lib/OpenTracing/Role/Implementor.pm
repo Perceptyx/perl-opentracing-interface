@@ -19,7 +19,7 @@ Sets the GlobalTracer singleton to a specific implementation
     );
     
 
-head3 params
+=head3 params
 
 =over
 
