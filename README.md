@@ -22,3 +22,8 @@ use OpenTracing;
 
 OpenTracing->set_global_tracer( SomeTracerImplementation->new( ... ) );
 ```
+## About
+
+The interfaces are being defined as roles ( using L<Role::Tiny> ) and use
+C<around> method modifiers, instead of C<require>, we do want to wrap the method
+in type checking ( using L<Type::Tiny> and friends ).
