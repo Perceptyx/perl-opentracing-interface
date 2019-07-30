@@ -1,5 +1,5 @@
 MANIFEST
-Makefile.pl
+Makefile.PL
 cpanfile
 lib/OpenTracing/API.pod
-lib/OpenTracing/Role/Implementation.pm
+lib/OpenTracing/Role/Implementor.pm
