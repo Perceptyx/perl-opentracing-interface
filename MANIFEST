@@ -1,0 +1,5 @@
+MANIFEST
+MakeFile.pl
+cpanfile
+lib/OpenTracing/API.pod
+lib/OpenTracing/Role/Implementation.pm
