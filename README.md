@@ -24,6 +24,8 @@ OpenTracing->set_global_tracer( SomeTracerImplementation->new( ... ) );
 ```
 ## About
 
-The interfaces are being defined as roles ( using L<Role::Tiny> ) and use
-C<around> method modifiers, instead of C<require>, we do want to wrap the method
-in type checking ( using L<Type::Tiny> and friends ).
+The interfaces being defined as roles
+( using <Role::Tiny|https://metacpan.org/pod/Role::Tiny )
+and use `around` method modifiers, instead of `require`, we do want to wrap the
+method in type checking
+( using <Type::Tiny|https://metacpan.org/pod/Type::Tiny> and friends ).
