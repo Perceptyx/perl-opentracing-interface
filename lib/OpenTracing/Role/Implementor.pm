@@ -51,7 +51,7 @@ Gets the GlobalTracer
 
 =cut
 
-around get_global_tracer => {
+around get_global_tracer => sub {
     my $original = shift;
     my $invocant = shift;
     
