@@ -1,7 +1,8 @@
+our $VERSION = '0.001';
 
 =head1 NAME
 
-OpenTracing::Role - API definition for OpenTransport implementations
+OpenTracing::API - API definition for OpenTransport implementations
 
 =head1 DESCRIPTION
 
