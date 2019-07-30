@@ -58,4 +58,6 @@ around get_global_tracer => sub {
     $original->( $invocant->(@_) )
 };
 
+requires 'get_global_tracer';
+
 1;
