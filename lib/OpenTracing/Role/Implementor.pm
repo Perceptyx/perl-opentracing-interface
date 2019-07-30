@@ -42,6 +42,8 @@ around set_global_tracer => sub {
     $original->( $invocant->(@_) )
 };
 
+requires 'set_global_tracer';
+
 =head2 get_global_tracer
 
 Gets the GlobalTracer
