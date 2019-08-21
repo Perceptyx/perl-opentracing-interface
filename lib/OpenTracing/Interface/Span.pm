@@ -11,7 +11,7 @@ OpenTracing::interface::Span - A role that defines the Span interface
 
 =head1 SYNOPSIS
 
-    pacakge OpenTracing::MyImplementation::Span;
+    pacakge OpenTracing::Implementation::MyBackendService::Span;
     
     use Role::Tiny::With;
     
