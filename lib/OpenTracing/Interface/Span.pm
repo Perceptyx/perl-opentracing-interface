@@ -3,6 +3,8 @@ package OpenTracing::Interface::Span;
 use strict;
 use warnings;
 
+
+
 =head1 NAME
 
 OpenTracing::interface::Span - A role that defines the Span interface
@@ -43,6 +45,7 @@ Since they do not do anything else, they can be switched-off during production.
 =cut
 
 
+
 use OpenTracing::ReadableInterface;
 #
 # auto imports a few tools for writing readable interfaces
@@ -55,9 +58,12 @@ use Types::Common::Numeric qw/PositiveNum/;
 use Types::Interface qw/ObjectDoesInterface/;
 
 
+
 =head1 METHODS
 
 =cut
+
+
 
 =head2 get_context
 
@@ -153,7 +159,6 @@ used implicitly.
 The (finished) span itself, for chaining purposes.
 
 =cut
-
 
 around finish => instance_method ( Maybe[PositiveNum] $timestamp {
     
@@ -294,7 +299,6 @@ around set_bagagge_item => instance_method ( Str $key, Value $value ) {
 
 
 
-
 =head2 get_baggage_item
 
 Returns either the corresponding baggage value, or C<undef> when such a value
@@ -324,5 +328,7 @@ around get_bagagge_item => instance_method ( Str $key ) {
         
     )
 }
+
+
 
 1;
