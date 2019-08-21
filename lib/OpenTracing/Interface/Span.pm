@@ -1,10 +1,59 @@
 package OpenTracing::Interface::Span;
 
-use OpenTracing::ReadableInterface;;
+use strict;
+use warnings;
 
 =head1 NAME
 
-OpenTracing::Role::Span - A role that defines the Span interface
+OpenTracing::interface::Span - A role that defines the Span interface
+
+=head1 SYNOPSIS
+
+    pacakge OpenTracing::MyImplementation::Span;
+    
+    use Role::Tiny::With;
+    
+    with 'OpenTracing::Interface::Span'
+        if $ENV{OPENTRACING_TYPECHECKS};
+    
+    ...
+    
+    sub get_context {
+        ...
+    }
+    
+    sub overwrite_operation_name {
+        ...
+    }
+    
+    ...
+    
+    1;
+
+=head1 DESCRIPTION
+
+This 'role' describes the interface for any OpenTracing Span implementation.
+
+This description is using C<around> method modifiers that basically wraps them
+around the real implementation. These method modifiers provide a 'readable' and
+reusable interface, describing the inputs and outputs, using type constraints.
+
+Since they do not do anything else, they can be switched-off during production.
+
+=cut
+
+
+use OpenTracing::ReadableInterface;
+#
+# auto imports a few tools for writing readable interfaces
+# - arround
+# - parameters, instance_method, class_method, and method_parameters
+# - returns, and returns_self
+
+use Types::Standard qw/Int Maybe Str Value/;
+use Types::Common::Numeric qw/PositiveNum/;
+use Types::Interface qw/ObjectDoesInterface/;
+
 
 =head1 METHODS
 
