@@ -9,6 +9,7 @@ OpenTracing::ReadableInterface - To make an Intreface Definition ... readable!
     package My::Class::interface;
     
     use OpenTracing::ReadableInterface;
+    use Types::Standard qw/:all/;
     
     around create_object => class_method ( Str $name, Int $age ) {
         returns( InstanceOf['My::Class'] ,
@@ -37,12 +38,22 @@ Perl does not.
 But we have CPAN... L<ReadableInterface> will bring some of this, by providing a
 few 'imports'.
 
-=head1 IMPORTS
+
+
+=head1 EXPORTS
+
+The following are exported into the callers namespace:
+
+=cut
+
+
 
 =head2 around
 
 This is the C<around> method modifier, imported from L<Role::Tiny>. Basically,
 the interface being described, is nothing else than a role.
+
+
 
 =head2 parameters
 
@@ -56,6 +67,8 @@ So, inside the around method modifier CODEBLOCK, one can do:
 
     $orig->( $self => ( ... ) );
 
+
+
 =head2 instance_method
 
     around $method => instance_methode ( $Type $foo, $Type $bar ) { ... }
@@ -67,6 +80,8 @@ And inside the CODEBLOCK:
 
     $original->( $instance => ( ... ) );
 
+
+
 =head2 class_method
 
     around $method => class_method ( $Type $foo, $Type $bar ) { ... }
@@ -77,6 +92,8 @@ which must be of the type C<ClassName>, from L<Types::Standard>.
 And inside the CODEBLOCK:
 
     $original->( $class => ( ... ) );
+
+
 
 =head2 method_parameters
 
@@ -90,16 +107,50 @@ And inside the CODEBLOCK:
 
     $original->( $invocant => ( ... ) );
 
+
+
 =head2 returns
 
-    returns ( $Type , $value )
+    returns ( $Type , $return_value )
 
-Checks that the C<$value> is of type C<$Type> and returns that value, or dies
-otherwise.
+Checks that the C<$return_value> is of type C<$Type> and returns that value, or
+dies otherwise.
 
 This is borrowed from C<assert_return>, found in L<Type::Tiny> and friends.
 
+
+
+=head2 maybe_returns
+
+    maybe_returns ( $Type , $return_value )
+
+Just like L<returns>, however will accept C<undef> as well.
+
+
+=head2 returns_self
+
+    returns ( $self , $return_value )
+
+Checks that the the C<$return_value>, is the same as C<$self>. That is just for
+convenience when your method allows chaining and returns the same object.
+
+
+=head2 maybe_returns_self
+
+    returns ( $self , $return_value )
+
+Same as L<returns_self> except that it allows for C<undef> to be returned. This
+could be nice for interfaces that do not want to throw exceptions and use
+C<undef> as a return value, to indicate that 'something' went wrong and therfore
+do not return $self.
+
+Be warned, allowing C<undef> to be returned, this will break the moment one will
+try to chain methods. This causes "Can't call method $foo on undef" errors.
+Which, of course, can be caught using C<try> blocks.
+
 =cut
+
+
 
 use strict;
 use warnings;
@@ -113,7 +164,7 @@ our @EXPORT = qw/&returns/;
 use Import::Into;
 
 
-use Types::Standard qw/ClassName Object/;
+use Types::Standard qw/ClassName Object Maybe/;
 use Type::Params qw/Invocant/;
 
 
@@ -122,6 +173,35 @@ sub returns {
     my $type_constraint = shift;
     
     $type_constraint->assert_return(@_)
+}
+
+
+
+sub maybe_returns {
+    my $type_constraint = shift;
+    
+    Maybe[$type_constraint]->assert_return(@_)
+}
+
+
+
+sub returns_self {
+    my $self = shift;
+    
+    return $self if $self eq $_[0];
+    
+    die "Expected to return \$self, got [$self]\n";
+}
+
+
+
+sub maybe_returns_self {
+    my $self = shift;
+    
+    return unless defined $_[0];
+    return $self if $self eq $_[0];
+    
+    die "Expected to return \$self, got [$self]\n";
 }
 
 
@@ -156,6 +236,8 @@ sub import {
     Role::Tiny->import::into(scalar caller);
     
 }
+
+
 
 1;
 
