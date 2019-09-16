@@ -1,14 +1,70 @@
-package OpenTracing::Role::Span;
-
-use Role::Tiny;
-
 =head1 NAME
 
-OpenTracing::Role::Span - A role that defines the Span interface
+OpenTracing::interface::Span - A role that defines the Span interface
+
+
+
+=head1 SYNOPSIS
+
+    pacakge OpenTracing::Implementation::MyBackendService::Span;
+    
+    sub get_context {
+        ...
+    }
+    
+    sub overwrite_operation_name {
+        ...
+    }
+    
+    sub finish {
+        ...
+    }
+    
+    sub set_tag {
+        ...
+    }
+    
+    sub log_data {
+        ...
+    }
+    
+    sub set_baggage_item {
+        ...
+    }
+    
+    sub get_baggage_item {
+        ...
+    }
+    
+    BEGIN {
+        use Role::Tiny::With;
+        with 'OpenTracing::Interface::Span'
+            if $ENV{OPENTRACING_INTERFACE};
+    } # check at compile time, perl -c will work
+    
+    1;
+
+
+
+=head1 DESCRIPTION
+
+This 'role' describes the interface for any OpenTracing Span implementation.
+
+This description is using C<around> method modifiers that basically wraps them
+around the real implementation. These method modifiers provide a 'readable' and
+reusable interface, describing the inputs and outputs, using type constraints.
+
+Consumers of this role, or implementors of the interface are MUST implement each
+method mentioned below. Not doing so will result in compilation errors.
+
+Since this role does nothing else than checking input and output, it is useful
+during development. Most likely it can be switched off safely in production
+environments.
+
+
 
 =head1 METHODS
 
-=cut
 
 =head2 get_context
 
@@ -19,20 +75,13 @@ L<get_context()> after a call to L<finish()>.
     my $context = $span->get_context;
     
 
-=head3 returns
+=head3 Prameters
 
-An object that does the L<OpenTracing::Role::SpanContext> role.
+none
 
-=cut
+=head3 Returns
 
-around get_context => sub {
-    my $original  = shift;
-    my $invocant  = shift;
-    
-    $original->( $invocant => ( @_ ) )
-};
-
-requires 'get_context';
+An object that does the L<OpenTracing::Interface::SpanContext> role.
 
 
 
@@ -43,7 +92,7 @@ Changes the operation name.
     $span->overwrite_operation_name( $operation_name );
     
 
-=head3 required params
+=head3 Required Positional Parameters
 
 =over
 
@@ -53,21 +102,9 @@ The name of the operation-name, must be a string.
 
 =back
 
-=head3 returns
+=head3 Returns
 
 The span itself, for chaining purposes.
-
-=cut
-
-
-around overwrite_operation_name => sub {
-    my $original  = shift;
-    my $invocant  = shift;
-    
-    $original->( $invocant => ( @_ ) )
-};
-
-requires 'overwrite_operation_name';
 
 
 
@@ -87,7 +124,11 @@ leads to undefined behavior (but not returning an exception).
 
 If the span is already finished, a warning should be logged.
 
-=head3 optional params
+=head3 Required Positional Parameters
+
+none
+
+=head3 Optional Positional Params
 
 =over
 
@@ -98,21 +139,9 @@ used implicitly.
 
 =back
 
-=head3 retruns
+=head3 Returns
 
-The (finished) span, for chaining purposes.
-
-=cut
-
-
-around finish => sub {
-    my $original  = shift;
-    my $invocant  = shift;
-    
-    $original->( $invocant => ( @_ ) )
-};
-
-requires 'finish';
+The (finished) span itself, for chaining purposes.
 
 
 
@@ -120,7 +149,7 @@ requires 'finish';
 
 Adds a tag to the span
 
-    $span->set_tag( $tag_key, $tag_value );
+    $span->set_tag( $tag_key => $tag_value );
     
 
 If there is a pre-existing tag set for tag_key, it is overwritten.
@@ -129,36 +158,23 @@ As an implementor, consider using "standard tags" listed in OpenTracing.io
 
 If the span is already finished, a warning should be logged.
 
-=head3 required params
+=head3 Required Positional Parameters
 
 =over
 
-=item tag_key
-
-A string.
+=item tag_key, as C<Str>
 
 OpenTracing does not enforce any limitations though.
 
-=item tag_value
+=item tag_value, as C<Value>
 
 Must be either a string, a boolean value, or a numeric type.
 
 =back
 
-=head3 returns
+=head3 Returns
 
 The span itself, for chaining purposes.
-
-=cut
-
-around set_tag => sub {
-    my $original  = shift;
-    my $invocant  = shift;
-    
-    $original->( $invocant => ( @_ ) )
-};
-
-requires 'set_tag';
 
 
 
@@ -172,24 +188,19 @@ Adds a log record to the span
         ...
     );
 
-=head3 required params
+=head3 Required Positional Parameters
 
-key/value pairs.
+=over
 
-=head3 returns
+=item key, as C<Str>
+
+=item value, as C<Str>
+
+=back
+
+=head3 Returns
 
 The span itself, for chaining purposes.
-
-=cut
-
-around log_data => sub {
-    my $original  = shift;
-    my $invocant  = shift;
-    
-    $original->( $invocant => ( @_ ) )
-};
-
-requires 'log_data';
 
 
 
@@ -215,30 +226,19 @@ Use this feature thoughtfully and with care. Every key and value is copied into
 every local and remote child of the associated Span, and that can add up to a
 lot of network and cpu overhead.
 
-=head3 required parameters
+=head3 Required Positional Parameters
 
 =over
 
-=item baggage_key, as String
+=item baggage_key, as C<Str>
 
-=item baggage_value, as Value
+=item baggage_value, as C<Value>
 
 =back
 
-=head3 returns
+=head3 Returns
 
 The span itself, for chaining purposes.
-
-=cut
-
-around set_bagagge_item => sub {
-    my $original  = shift;
-    my $invocant  = shift;
-    
-    $original->( $invocant => ( @_ ) )
-};
-
-requires 'set_bagagge_item';
 
 
 
@@ -249,27 +249,20 @@ was missing.
 
     my $baggage_value = $span->get_baggage_item( $baggage_key );
 
-=head3 required parameters
+=head3 Required Positional Parameters
 
 =over
 
-=item baggage_key, as String
+=item baggage_key, as C<Str>
 
 =back
 
-=head3 returns
+=head3 Returns
 
 The value or C<undef> when such a value was missing.
 
 =cut
 
-around get_bagagge_item => sub {
-    my $original  = shift;
-    my $invocant  = shift;
-    
-    $original->( $invocant => ( @_ ) )
-};
 
-requires 'get_bagagge_item';
 
 1;

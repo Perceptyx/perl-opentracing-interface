@@ -1,0 +1,74 @@
+=head1 NAME
+
+OpenTracing::Interface::Tracer - A role that defines the Tracer interface
+
+=head1 SYNOPSIS
+
+    package OpenTracing::Implementation::MyBackendService::Tracer;
+    
+    sub get_scope_manager {
+        ...
+    }
+    
+    sub get_active_span {
+        ...
+    }
+    
+    sub start_active_span {
+        ...
+    }
+    
+    BEGIN {
+        use Role::Tiny::With;
+        with 'OpenTracing::Interface::Tracer'
+            if $ENV{OPENTRACING_INTERFACE};
+    } # check at compile time, perl -c will work
+    
+    1;
+
+
+
+=head1 DESCRIPTION
+
+This 'role' describes the interface for any OpenTracing Tracer implementation.
+
+This description is using C<around> method modifiers that basically wraps them
+around the real implementation. These method modifiers provide a 'readable' and
+reusable interface, describing the inputs and outputs, using type constraints.
+
+Consumers of this role, or implementors of the interface are MUST implement each
+method mentioned below. Not doing so will result in compilation errors.
+
+Since this role does nothing else than checking input and output, it is useful
+during development. Most likely it can be switched off safely in production
+environments.
+
+
+
+=head1 METHODS
+
+
+
+=head2 get_scope_manager
+
+Returns the current L<ScopeManager>, which may be a noop but may not be null.
+
+
+
+=head2 get_active_span
+
+This will return the 'active' span.
+
+A shorthand for C<< $tracer->get_scope_manager->get_active_scope->get_span >>
+
+It will return C<undef> if there is no active scope.
+
+
+
+=head2 start_active_span
+
+=head3 Returns
+
+An object that implements the L<ScopeGuard> interface.
+
+=cut
