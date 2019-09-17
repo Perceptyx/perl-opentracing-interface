@@ -110,8 +110,8 @@ used.
 
 =item finish_span_on_close
 
-A <Bool> when set to false, it will not be automatically closed when it goes out
-of scope
+A C<Bool> when set to false, it will not be automatically closed when it goes
+out of scope
 
 =back
 
