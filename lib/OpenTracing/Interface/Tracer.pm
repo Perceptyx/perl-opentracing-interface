@@ -38,14 +38,15 @@ around start_acitve_span => instance_method ( Str  $operation_name, %options ) {
     
     ( Dict[
         
-        child_of            => Optional[
+        child_of                => Optional[
             ObjectDoesInterface['OpenTracing::Interface::Span']        |
             ObjectDoesInterface['OpenTracing::Interface::SpanContext']
         ],
-        references          => Optional[ ArrayRef[ HashRef ]],
-        tags                => Optional[ HashRef ],
-        start_time          => Optional[ PositiveNum ],
-        ignore_active_span  => Optional[ Bool ],
+        references              => Optional[ ArrayRef[ HashRef ]],
+        tags                    => Optional[ HashRef[ Str ] ],
+        start_time              => Optional[ PositiveNum ],
+        ignore_active_span      => Optional[ Bool ],
+        finish_span_on_close    => Optional[ Bool ],
         
     ] )->assert_valid( \%options );
     
