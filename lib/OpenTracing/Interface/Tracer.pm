@@ -77,5 +77,8 @@ around start_span => instance_method ( Str $operation_name, %options ) {
     
         $original->( $instance => ( $operation_name, %options ) )
     )
-}
+};
+
+
+
 1;
