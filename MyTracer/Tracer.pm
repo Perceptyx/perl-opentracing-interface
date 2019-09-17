@@ -29,6 +29,8 @@ sub get_scope_manager {
     MyTracer::ScopeManager->new( );
 }
 
+sub start_span { ... }
+
 BEGIN {
     
     use Role::Tiny::With;
