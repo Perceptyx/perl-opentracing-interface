@@ -50,9 +50,6 @@ around start_acitve_span => instance_method ( Str  $operation_name, %options ) {
         
     ] )->assert_valid( \%options );
     
-
-{ use Data::Dumper; local $Data::Dumper::Sortkeys = 1; warn Dumper(@_) . "\n"; } # XXX REMOVE ME
-
     returns_object_does_interface( 'OpenTracing::Interface::ScopeGuard',
     
         $original->( $instance => ( $operation_name, %options ) )
