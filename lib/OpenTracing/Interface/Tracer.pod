@@ -18,6 +18,10 @@ OpenTracing::Interface::Tracer - A role that defines the Tracer interface
         ...
     }
     
+    sub start_span {
+        ...
+    }
+    
     BEGIN {
         use Role::Tiny::With;
         with 'OpenTracing::Interface::Tracer'
@@ -118,5 +122,57 @@ out of scope
 =head3 Returns
 
 An object that implements the L<ScopeGuard> interface.
+
+
+
+=head2 start_span
+
+=head3 Required Positional Parameters
+
+=over
+
+=item operation_name, as C<Str>
+
+=back
+
+=head3 Optional Named Parameters
+
+=over
+
+=item child_of
+
+either
+
+an object that does L<OpenTracing::Interface::Span>
+
+or
+
+an object that does L<OpenTracing::Interface::SpanContext>
+
+=item references
+
+an C<ArrayRef> of 'references' ... # XXX Don't ask me now!
+
+=item tags
+
+a C<HashRef> of tags, the values must be a C<Str>
+
+=item start_time
+
+A C<Num>, that is the number off seconds since epoch, and can have decimals, for
+example, up to nana-seconds accuracy
+
+=item ignore_active_span
+
+A C<Bool> when set to 'true', will not use the current active span when creating
+an implicit parent span for a missing L<child_of>, otherwise, that would be
+used.
+
+=back
+
+=head3 Returns
+
+An object that implements the L<OpenTracing::Interface::Span> interface.
+
 
 =cut

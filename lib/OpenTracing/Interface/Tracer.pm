@@ -58,4 +58,24 @@ around start_acitve_span => instance_method ( Str  $operation_name, %options ) {
 
 
 
+around start_span => instance_method ( Str $operation_name, %options ) {
+    
+     ( Dict[
+        
+        child_of                => Optional[
+            ObjectDoesInterface['OpenTracing::Interface::Span']        |
+            ObjectDoesInterface['OpenTracing::Interface::SpanContext']
+        ],
+        references              => Optional[ ArrayRef[ HashRef ]],
+        tags                    => Optional[ HashRef[ Str ] ],
+        start_time              => Optional[ PositiveNum ],
+        ignore_active_span      => Optional[ Bool ],
+        
+    ] )->assert_valid( \%options );
+    
+    returns_object_does_interface( 'OpenTracing::Interface::Span',
+    
+        $original->( $instance => ( $operation_name, %options ) )
+    )
+}
 1;
