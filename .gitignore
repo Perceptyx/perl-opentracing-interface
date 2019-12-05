@@ -1,0 +1,5 @@
+.DS_Store
+*.sw[p-z]
+/local
+*.old
+*.gz
