@@ -4,8 +4,8 @@ EXAMPLES/lib/App/Foo/interface.pm
 EXAMPLES/lib/App/Foo/types.pm
 EXAMPLES/lib/App/Interface.pm
 lib/OpenTracing/Interface.pod
-lib/OpenTracing/Interface/ScopeGuard.pm
-lib/OpenTracing/Interface/ScopeGuard.pod
+lib/OpenTracing/Interface/Scope.pm
+lib/OpenTracing/Interface/Scope.pod
 lib/OpenTracing/Interface/ScopeManager.pm
 lib/OpenTracing/Interface/Span.pm
 lib/OpenTracing/Interface/Span.pod
