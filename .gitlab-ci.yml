@@ -1,0 +1,10 @@
+stage:
+  - build
+
+package:
+  stage: build
+  script:
+    - perl Makefile.PL
+    - make dist
+  artifacts:
+    - *.tar.gz 
