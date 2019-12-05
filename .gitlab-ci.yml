@@ -7,4 +7,4 @@ package:
     - perl Makefile.PL
     - make dist
   artifacts:
-    - *.tar.gz 
+    - "*.tar.gz"
