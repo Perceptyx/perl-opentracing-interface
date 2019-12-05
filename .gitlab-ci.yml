@@ -19,6 +19,7 @@ test:unit:
 package:
   stage: build
   script:
+    - cpanm --installdeps .
     - perl Makefile.PL
     - make dist
   artifacts:
