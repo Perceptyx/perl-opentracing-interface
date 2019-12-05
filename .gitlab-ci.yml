@@ -1,7 +1,6 @@
 image: ubuntu:bionic
 
 stages:
-  #  - test
   - build
 
 before_script:
