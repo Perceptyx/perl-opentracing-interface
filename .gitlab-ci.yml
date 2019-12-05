@@ -21,4 +21,6 @@ package:
     - perl Makefile.PL
     - make dist
   artifacts:
+    paths:
     - "*.tar.gz"
+    expire_in: 1 week
