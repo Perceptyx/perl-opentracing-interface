@@ -25,10 +25,10 @@ around overwrite_operation_name => instance_method ( Str $operation_name ) {
 };
 
 
-around finish => instance_method ( Maybe[PositiveNum] $timestamp ) {
+around finish => instance_method ( Maybe[PositiveNum] $epoch_timestamp ) {
     
     returns_self( $instance,
-        $original->( $instance => ( $timestamp ) )
+        $original->( $instance => ( $epoch_timestamp ) )
     )
 };
 
