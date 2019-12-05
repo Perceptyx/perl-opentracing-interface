@@ -79,7 +79,7 @@ It will return C<undef> if there is no active scope.
 
 =back
 
-=head3 Optional Named Parameters
+=head3 Optional Dictionairy with Named Options
 
 =over
 
@@ -115,7 +115,7 @@ used.
 =item finish_span_on_close
 
 A C<Bool> when set to false, it will not be automatically closed when it goes
-out of scope
+out of scope. This is 'true' by default.
 
 =back
 
@@ -135,7 +135,7 @@ An object that implements the L<Scope> interface.
 
 =back
 
-=head3 Optional Named Parameters
+=head3 Optional Dictionairy with Named Options
 
 =over
 
