@@ -7,7 +7,7 @@ stages:
 before_script:
   - echo "Before script installation"
   - apt update
-  - apt install libdevel-cover-perl libtap-formatter-junit-perl libjson-xs-perl libtest-most-perl libtest-mockmodule-perl cpanminus -y
+  - apt install libdevel-cover-perl libtap-formatter-junit-perl libjson-xs-perl libtest-most-perl libtest-mockmodule-perl cpanminus make -y
 
 test:unit:
   stage: test
