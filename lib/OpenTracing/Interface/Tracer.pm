@@ -81,4 +81,32 @@ around start_span => instance_method ( Str $operation_name, %options ) {
 
 
 
+around inject_context => instance_method (
+    ObjectDoesInterface['OpenTracing::Interface::SpanContext'] $span_context,
+    $carrier_format,
+    $carrier
+) {
+    
+    returns( Undef,
+        
+        $original->( $instance => ( $panc_context, $carrier_format, $carrier ) )
+        
+    );
+    
+    return # we do not really want it to return undef, as perl relies on context
+};
+
+
+
+around extract_context => instance_method (
+    
+    returns_maybe_object_does_interface( 'OpenTracing::Interface::SpanContext',
+        
+        $original->( $instance => ( ) )
+        
+    )
+};
+
+
+
 1;
