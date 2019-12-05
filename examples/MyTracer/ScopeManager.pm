@@ -16,7 +16,7 @@ sub activate_span {
     
     print $finish_span_on_close ? "finish me" : "keep me alive";
     
-    return MyTracer::ScopeGuard->new(
+    return MyTracer::Scope->new(
         
     )
 }

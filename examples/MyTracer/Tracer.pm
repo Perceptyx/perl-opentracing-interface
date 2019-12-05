@@ -1,6 +1,6 @@
 package MyTracer::Tracer;
 
-use MyTracer::ScopeGuard;
+use MyTracer::Scope;
 use MyTracer::ScopeManager;
 
 sub new {
@@ -20,7 +20,7 @@ sub start_acitve_span {
 
     my $self = shift;
     
-    MyTracer::ScopeGuard->new( );
+    MyTracer::Scope->new( );
 }
 
 sub get_scope_manager { 
@@ -30,6 +30,10 @@ sub get_scope_manager {
 }
 
 sub start_span { ... }
+
+sub inject_context { ... }
+
+sub extract_context { ... }
 
 BEGIN {
     

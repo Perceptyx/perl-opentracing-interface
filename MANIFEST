@@ -1,8 +1,8 @@
 cpanfile
-lib/App/Foo.pm
-lib/App/Foo/interface.pm
-lib/App/Foo/types.pm
-lib/App/Interface.pm
+EXAMPLES/lib/App/Foo.pm
+EXAMPLES/lib/App/Foo/interface.pm
+EXAMPLES/lib/App/Foo/types.pm
+EXAMPLES/lib/App/Interface.pm
 lib/OpenTracing/Interface.pod
 lib/OpenTracing/Interface/ScopeGuard.pm
 lib/OpenTracing/Interface/ScopeGuard.pod
@@ -15,11 +15,11 @@ lib/OpenTracing/Interface/Tracer.pm
 lib/OpenTracing/Interface/Tracer.pod
 lib/OpenTracing/ReadableInterface.pm
 Makefile.PL
-MANIFEST			This list of files
-MyTracer/Check.pm
-MyTracer/ScopeGuard.pm
-MyTracer/ScopeManager.pm
-MyTracer/Span.pm
-MyTracer/SpanContext.pm
-MyTracer/Tracer.pm
+MANIFEST
+EXAMPLES/MyTracer/Check.pm
+EXAMPLES/MyTracer/Scope.pm
+EXAMPLES/MyTracer/ScopeManager.pm
+EXAMPLES/MyTracer/Span.pm
+EXAMPLES/MyTracer/SpanContext.pm
+EXAMPLES/MyTracer/Tracer.pm
 README.md

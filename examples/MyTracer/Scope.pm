@@ -1,4 +1,4 @@
-package MyTracer::ScopeGuard;
+package MyTracer::Scope;
 
 sub new {
     my $class = shift;
@@ -18,7 +18,7 @@ BEGIN {
     
     use Role::Tiny::With;
 
-    with OpenTracing::Interface::ScopeGuard;
+    with OpenTracing::Interface::Scope;
 
 }
 
