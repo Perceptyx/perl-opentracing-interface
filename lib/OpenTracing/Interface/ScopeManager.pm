@@ -13,7 +13,7 @@ use Types::Standard qw/Bool Maybe/;
 
 around activate_span => instance_method (
     (ObjectDoesInterface['OpenTracing::Interface::Span']) $span,
-    Bool $finish_span_on_close = !!undef,
+    Bool $finish_span_on_close,
 ) {
     
     returns_object_does_interface( 'OpenTracing::Interface::ScopeGuard',
