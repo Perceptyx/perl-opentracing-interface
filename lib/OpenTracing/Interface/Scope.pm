@@ -1,4 +1,4 @@
-package OpenTracing::Interface::ScopeGuard;
+package OpenTracing::Interface::Scope;
 
 
 use strict;

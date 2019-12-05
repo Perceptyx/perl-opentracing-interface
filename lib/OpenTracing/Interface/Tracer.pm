@@ -50,7 +50,7 @@ around start_acitve_span => instance_method ( Str  $operation_name, %options ) {
         
     ] )->assert_valid( \%options );
     
-    returns_object_does_interface( 'OpenTracing::Interface::ScopeGuard',
+    returns_object_does_interface( 'OpenTracing::Interface::Scope',
     
         $original->( $instance => ( $operation_name, %options ) )
     )

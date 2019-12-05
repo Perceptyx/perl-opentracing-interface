@@ -16,7 +16,7 @@ around activate_span => instance_method (
     Bool $finish_span_on_close,
 ) {
     
-    returns_object_does_interface( 'OpenTracing::Interface::ScopeGuard',
+    returns_object_does_interface( 'OpenTracing::Interface::Scope',
         $original->( $instance => ( $finish_span_on_close ) )
     )
 
@@ -30,7 +30,7 @@ around activate_span => instance_method (
 
 around get_active_scope => instance_method ( ) {
     
-    returns_object_does_interface( 'OpenTracing::Interface::ScopeGuard',
+    returns_object_does_interface( 'OpenTracing::Interface::Scope',
         $original->( $instance => ( ) )
     )
 };

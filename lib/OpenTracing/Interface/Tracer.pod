@@ -121,7 +121,7 @@ out of scope
 
 =head3 Returns
 
-An object that implements the L<ScopeGuard> interface.
+An object that implements the L<Scope> interface.
 
 
 
