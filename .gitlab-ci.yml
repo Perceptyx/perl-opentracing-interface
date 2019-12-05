@@ -1,5 +1,19 @@
+image: ubuntu:bionic
+
 stages:
+  - test
   - build
+
+before_script:
+  - echo "Before script installation"
+  - apt update
+  - apt install libdevel-cover-perl libtap-formatter-junit-perl libjson-xs-perl libtest-most-perl libtest-mockmodule-perl -y
+
+test:unit:
+  stage: test
+  script:
+    - prove -MDevel::Cover -l lib -r t/
+  coverage: /Totals+.+s(d+.d+?)$/
 
 package:
   stage: build
