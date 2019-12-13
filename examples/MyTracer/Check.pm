@@ -26,7 +26,7 @@ $tracer->start_acitve_span( "Hello Babe" =>
 
 my $scope_manager = $tracer->get_scope_manager();
 
-my $scope_guard = $scope_manager->activate_span($span);
+my $scope_guard = $scope_manager->activate_span($span, finish_span_on_close => 0);
 
 
 1;
