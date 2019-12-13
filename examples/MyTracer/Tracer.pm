@@ -14,7 +14,7 @@ sub new {
 
 sub get_active_span { ... }
 
-sub start_acitve_span {
+sub start_active_span {
 
 { use Data::Dumper; local $Data::Dumper::Sortkeys = 1; warn Dumper(@_) . "\n"; } # XXX REMOVE ME
 

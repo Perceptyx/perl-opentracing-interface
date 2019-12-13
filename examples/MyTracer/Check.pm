@@ -15,7 +15,7 @@ $span->log_data ( what => 7.5 );
 
 my $tracer = MyTracer::Tracer->new( some_args => 'here' );
 
-$tracer->start_acitve_span( "Hello Babe" =>
+$tracer->start_active_span( "Hello Babe" =>
     start_time => 300,
     tags => {
         foo => 42,
