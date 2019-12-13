@@ -7,24 +7,25 @@ use warnings;
 use OpenTracing::ReadableInterface;
 
 use Types::Interface qw/ObjectDoesInterface/;
-use Types::Standard qw/Bool Maybe/;
+use Types::Standard qw/Bool Dict Optional/;
 
 
 
 around activate_span => instance_method (
     (ObjectDoesInterface['OpenTracing::Interface::Span']) $span,
-    Bool $finish_span_on_close,
+    %options,
 ) {
+    (
+        Dict[
+            finish_span_on_close => Optional[ Bool ],
+        ]
+    )->assert_valid( \%options );
     
     returns_object_does_interface( 'OpenTracing::Interface::Scope',
-        $original->( $instance => ( $finish_span_on_close ) )
+        $original->( $instance => %options )
     )
 
-}; # deprecate this, don't pass in booleans or switches, make it explicit
-
-# around activate_but_do_not_close_on_finish
-
-# around activate_and_close_on_finish
+};
 
 
 
