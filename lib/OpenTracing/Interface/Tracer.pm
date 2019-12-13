@@ -34,7 +34,7 @@ around get_active_span => instance_method ( ) {
 
 
 
-around start_acitve_span => instance_method ( Str  $operation_name, %options ) {
+around start_active_span => instance_method ( Str  $operation_name, %options ) {
     
     ( Dict[
         
