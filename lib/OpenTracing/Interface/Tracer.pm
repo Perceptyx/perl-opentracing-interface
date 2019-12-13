@@ -6,7 +6,7 @@ use warnings;
 
 use OpenTracing::ReadableInterface;
 
-use Types::Standard qw/Int Maybe Str Value HashRef Dict ArrayRef Bool Optional/;
+use Types::Standard qw/ArrayRef Bool Dict HashRef Optional Str Undef/;
 use Types::Common::Numeric qw/PositiveNum/;
 use Types::Interface qw/ObjectDoesInterface/;
 
@@ -82,14 +82,14 @@ around start_span => instance_method ( Str $operation_name, %options ) {
 
 
 around inject_context => instance_method (
-    ObjectDoesInterface['OpenTracing::Interface::SpanContext'] $span_context,
+    (ObjectDoesInterface['OpenTracing::Interface::SpanContext']) $span_context,
     $carrier_format,
     $carrier
 ) {
     
     returns( Undef,
         
-        $original->( $instance => ( $panc_context, $carrier_format, $carrier ) )
+        $original->( $instance => ( $span_context, $carrier_format, $carrier ) )
         
     );
     
@@ -98,7 +98,7 @@ around inject_context => instance_method (
 
 
 
-around extract_context => instance_method (
+around extract_context => instance_method ( ) {
     
     returns_maybe_object_does_interface( 'OpenTracing::Interface::SpanContext',
         
