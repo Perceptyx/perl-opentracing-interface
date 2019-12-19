@@ -4,7 +4,7 @@ package OpenTracing::Interface::Tracer;
 use strict;
 use warnings;
 
-use OpenTracing::Interface::Utils::RoleAround;
+use Role::MethodReturns;
 
 use Types::Standard qw/ArrayRef Bool Dict HashRef Optional Str Undef/;
 use Types::Common::Numeric qw/PositiveNum/;
