@@ -3,7 +3,7 @@ package OpenTracing::Interface::Span;
 use strict;
 use warnings;
 
-use OpenTracing::ReadableInterface;
+use OpenTracing::Interface::Utils::RoleAround;
 
 use Types::Standard qw/ Str Maybe Value HashRef/;
 use Types::Common::Numeric qw/PositiveNum/;

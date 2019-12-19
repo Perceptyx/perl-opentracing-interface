@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 
-use OpenTracing::ReadableInterface;
+use OpenTracing::Interface::Utils::RoleAround;
 
 use Types::Interface qw/ObjectDoesInterface/;
 use Types::Standard qw/Bool Dict Optional/;

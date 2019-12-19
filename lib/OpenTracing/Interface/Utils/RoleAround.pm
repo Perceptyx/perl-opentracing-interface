@@ -1,14 +1,14 @@
-package OpenTracing::ReadableInterface;
+package OpenTracing::Interface::Utils::RoleAround;
 
 =head1 NAME
 
-OpenTracing::ReadableInterface - To make an Intreface Definition ... readable!
+OpenTracing::Interface::Utils::RoleAround - Readable Intreface Definitions
 
 =head1 SYNOPSIS
 
     package My::Class::interface;
     
-    use OpenTracing::ReadableInterface;
+    use OpenTracing::Interface::Utils::RoleAround;
     use Types::Standard qw/:all/;
     
     around create_object => class_method ( Str $name, Int $age ) {
@@ -35,7 +35,7 @@ return.
 
 Perl does not.
 
-But we have CPAN... L<ReadableInterface> will bring some of this, by providing a
+But we have CPAN... L<RoleAround> will bring some of this, by providing a
 few 'imports'.
 
 

@@ -14,7 +14,7 @@ lib/OpenTracing/Interface/SpanContext.pm
 lib/OpenTracing/Interface/SpanContext.pod
 lib/OpenTracing/Interface/Tracer.pm
 lib/OpenTracing/Interface/Tracer.pod
-lib/OpenTracing/ReadableInterface.pm
+lib/OpenTracing/Interface/Utils/RoleAround.pm
 Makefile.PL
 MANIFEST
 examples/MyTracer/Check.pm
@@ -26,3 +26,4 @@ examples/MyTracer/Tracer.pm
 examples/README.txt
 README.md
 t/00_use_ok.t
+t/Utils/RoleAround/00_use_ok.t
