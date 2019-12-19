@@ -1,3 +1,7 @@
+## COPYRIGHT NOTICE
+
+'OpenTracing API for Perl' is Copyright (C) 2019, Perceptyx Inc, Theo van Hoesel
+
 # OpenTracing API for Perl
 
 This package describes the OpenTracing API for Perl
@@ -29,3 +33,15 @@ The interfaces being defined as roles
 and use `around` method modifiers, instead of `require`, we do want to wrap the
 method in type checking
 ( using [Type::Tiny](https://metacpan.org/pod/Type::Tiny) and friends ).
+
+
+## LICENSE INFORMATION
+
+This library is free software; you can redistribute it and/or modify it under
+the terms of the Artistic License 2.0.
+
+This library is distributed in the hope that it will be useful, but it is
+provided “as is” and without any express or implied warranties.
+
+For details, see the full text of the license in the file LICENSE.
+

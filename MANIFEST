@@ -15,6 +15,7 @@ lib/OpenTracing/Interface/SpanContext.pod
 lib/OpenTracing/Interface/Tracer.pm
 lib/OpenTracing/Interface/Tracer.pod
 lib/OpenTracing/Interface/Utils/RoleAround.pm
+LICENSE.md
 Makefile.PL
 MANIFEST
 examples/MyTracer/Check.pm
