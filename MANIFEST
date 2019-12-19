@@ -26,3 +26,4 @@ examples/MyTracer/Tracer.pm
 examples/README.txt
 README.md
 t/00_use_ok.t
+t/Utils/RoleAround/00_use_ok.t
