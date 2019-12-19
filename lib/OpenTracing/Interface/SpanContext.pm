@@ -4,7 +4,7 @@ package OpenTracing::Interface::SpanContext;
 use strict;
 use warnings;
 
-use OpenTracing::ReadableInterface;
+use OpenTracing::Interface::Utils::RoleAround;
 
 use Types::Standard qw/Str Value/;
 
