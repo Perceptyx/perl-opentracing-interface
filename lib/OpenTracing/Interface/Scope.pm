@@ -6,7 +6,7 @@ use warnings;
 
 
 
-use OpenTracing::Interface::Utils::RoleAround;
+use Role::MethodReturns;
 
 use Types::Standard qw/Undef/;
 
