@@ -23,7 +23,7 @@ around activate_span => instance_method ( Span $span, %options, ) {
     )->assert_valid( \%options );
     
     returns( Scope,
-        $original->( $instance => %options )
+        $original->( $instance => ( $span, %options ) )
     )
     
 };
