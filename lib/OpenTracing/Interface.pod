@@ -12,6 +12,26 @@ and
 L<terminology|http://opentracing.io/documentation/pages/spec>
 more generally.
 
+=head1 INDEX
+
+See the following specifications:
+
+=over
+
+=item L<OpenTracing::Interface::Reference>
+
+=item L<OpenTracing::Interface::Scope>
+
+=item L<OpenTracing::Interface::ScopeManger>
+
+=item L<OpenTracing::Interface::Span>
+
+=item L<OpenTracing::Interface::SpanContext>
+
+=item L<OpenTracing::Interface::Tracer>
+
+=back
+
 =head1 SYNOPSIS
 
 =head2 Singleton Initialization
