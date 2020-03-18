@@ -95,7 +95,7 @@ an object that does L<OpenTracing::Interface::SpanContext>
 
 =item references
 
-an C<ArrayRef> of 'references' ... # XXX Don't ask me now!
+an C<ArrayRef> of L<OpenTracing::Interface::Reference>
 
 =item tags
 
@@ -151,7 +151,7 @@ an object that does L<OpenTracing::Interface::SpanContext>
 
 =item references
 
-an C<ArrayRef> of 'references' ... # XXX Don't ask me now!
+an C<ArrayRef> of L<OpenTracing::Interface::Reference>
 
 =item tags
 

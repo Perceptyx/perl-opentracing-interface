@@ -46,7 +46,9 @@ around start_active_span => instance_method ( Str  $operation_name, %options ) {
             ObjectDoesInterface['OpenTracing::Interface::Span']        |
             ObjectDoesInterface['OpenTracing::Interface::SpanContext']
         ],
-        references              => Optional[ ArrayRef[ HashRef ]],
+        references              => Optional[ ArrayRef[ ObjectDoesInterface[
+                                        'OpenTracing::Interface::Reference'
+                                   ]]],
         tags                    => Optional[ HashRef[ Str ] ],
         start_time              => Optional[ PositiveNum ],
         ignore_active_span      => Optional[ Bool ],
@@ -70,7 +72,9 @@ around start_span => instance_method ( Str $operation_name, %options ) {
             ObjectDoesInterface['OpenTracing::Interface::Span']        |
             ObjectDoesInterface['OpenTracing::Interface::SpanContext']
         ],
-        references              => Optional[ ArrayRef[ HashRef ]],
+        references              => Optional[ ArrayRef[ ObjectDoesInterface[
+                                        'OpenTracing::Interface::Reference'
+                                   ]]],
         tags                    => Optional[ HashRef[ Str ] ],
         start_time              => Optional[ PositiveNum ],
         ignore_active_span      => Optional[ Bool ],
