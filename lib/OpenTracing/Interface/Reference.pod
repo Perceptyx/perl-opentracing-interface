@@ -1,0 +1,125 @@
+
+=head1 NAME
+
+OpenTracing::Interface::Reference - A role that defines the Reference interface
+
+=head1 SYNOPSIS
+
+    package OpenTracing::Implementation::MyBackendService::Scope;
+        
+    sub new_child_of {
+        ...
+    }
+    
+    sub new_follows_from {
+        ...
+    }
+    
+    sub get_referenced_context {
+        ...
+    }
+    
+    sub is_child_of {
+        ...
+    }
+    
+    sub is_follows_from {
+        ...
+    }
+    
+    BEGIN {
+        use Role::Tiny::With;
+        with 'OpenTracing::Interface::Reference'
+            if $ENV{OPENTRACING_INTERFACE};
+    } # check at compile time, perl -c will work
+    
+    1;
+
+=head1 DESCRIPTION
+
+This 'role' describes the interface for any OpenTracing Reference
+implementation.
+
+References are used by L<Tracer> methods L<start_span> and L<start_active_span>
+to create "casual span references"
+
+See L<OpenTracing References|http://opentracing.io/spec/#causal-span-references>
+
+=head1 CLASS METHODS
+
+
+
+=head2 new_child_of
+
+Creates L<SpanContext> C<Reference> for which C<is_child_of> is 'true'.
+
+=head3 Required Positional Parameter
+
+=over
+
+=item $referenced+context
+
+Must be a C<ObjectDoesInterface['OpenTracing::Interface::SpanContext']>
+
+=back
+
+
+
+=head2 new_follows_from
+
+Creates L<SpanContext> C<Reference> for which C<is_follows_from> is 'true'.
+
+=head3 Required Positional Parameter
+
+=over
+
+=item $referenced+context
+
+Must be a C<ObjectDoesInterface['OpenTracing::Interface::SpanContext']>
+
+=back
+
+
+
+=head1 INSTANCE METHODS
+
+
+
+=head2 get_referenced_context
+
+Returns the original referenced L<SpanContext>.
+
+
+
+=head2 is_child_of
+
+Returns 'true' iff the C<Reference> is a C<CHILD_OF> type is, most likely,
+instantiated with C<new_child_of>.
+
+
+
+=head2 is_follows_from
+
+Returns 'true' iff the C<Reference> is a C<FOLLOWS_FROM> type is, most likely,
+instantiated with C<new_follows_from>.
+
+
+
+=cut
+
+
+
+=head1 CAVEATS
+
+This description is using C<around> method modifiers that basically wraps them
+around the real implementation. These method modifiers provide a 'readable' and
+reusable interface, describing the inputs and outputs, using type constraints.
+
+Consumers of this role, or implementors of the interface are MUST implement each
+method mentioned below. Not doing so will result in compilation errors.
+
+Since this role does nothing else than checking input and output, it is useful
+during development. Most likely it can be switched off safely in production
+environments.
+
+=cut
