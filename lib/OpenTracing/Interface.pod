@@ -12,6 +12,64 @@ and
 L<terminology|http://opentracing.io/documentation/pages/spec>
 more generally.
 
+
+
+=head1 SYNOPSIS
+
+=head2 Initialize the Tracer Singleton
+
+    use OpenTracing::Implementation qw/YourTracingService/;
+
+=head2 Access the Tracer Singleton
+
+    use OpenTracing::GlobalTracer qw/$TRACER/;
+
+=head2 Add a new span inside a subroutine
+
+    sub some_work {
+        my $opentracing_scope =
+            $TRACER->start_active_span( 'some_operation_name' );
+        
+        ...
+        
+        $opentracing_scope->close
+        
+        return ...
+    }
+
+=head2 Inject a SpanContext into an outgoing request:
+
+    my $opentracing_spancontext = $TRACER->get_active_span->get_context;
+    
+    use HTTP::Headers;
+    my $http_headers = HTTP::Headers->new( ... );
+    
+    $TRACER->inject_context( $opentracing_spancontext,
+        OPENTRACING_FORMAT_HTTP_HEADERS => $http_headers
+    );
+    
+    my $request = HTTP::Request->new( GET => 'https://...', $headers);
+    my response = LWP::UserAgent->request( $request );
+
+=head2 Extract a SpanContext from an incoming request
+
+    use YourFramework;
+    
+    get '/some_service' => sub {
+        my $http_headers = YourFramework->request->headers;
+        
+        my $opentracing_context = $TRACER->extract_context(
+            OPENTRACING_FORMAT_HTTP_HEADERS => $http_headers
+        );
+        
+        ...
+        
+    }
+
+=cut
+
+
+
 =head1 INDEX
 
 See the following specifications:
