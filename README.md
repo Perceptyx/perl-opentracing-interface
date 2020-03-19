@@ -16,16 +16,6 @@ more generally.
 
 ## Usage
 
-### Singleton initialization
-
-The simplest starting point is to set the global tracer. As early as possible,
-do:
-
-```perl
-use OpenTracing;
-
-OpenTracing->set_global_tracer( SomeTracerImplementation->new( ... ) );
-```
 ## About
 
 The interfaces being defined as roles
