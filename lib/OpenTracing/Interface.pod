@@ -49,15 +49,7 @@ implementation.
 
 =back
 
-=head1 SYNOPSIS
 
-=head2 Singleton Initialization
-
-    use Package::Alias 'OpenTracing' => 'Perceptyx::OpenTracing';
-    
-    OpenTracing->set_global_tracer( Some::Tracer::Implementation->new( ... ) );
-    
-=cut
 
 =head1 ABOUT
 
