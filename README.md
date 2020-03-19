@@ -16,6 +16,66 @@ more generally.
 
 ## Usage
 
+### Initialize the Tracer Singleton
+
+```perl
+use OpenTracing::Implementation qw/YourTracingService/;
+```
+
+### Access the Tracer Singleton
+
+```perl
+use OpenTracing::GlobalTracer qw/$TRACER/;
+```
+
+### Add a new span inside a subroutine
+
+```perl
+sub some_work {
+    my $opentracing_scope =
+        $TRACER->start_active_span( 'some_operation_name' );
+    
+    ...
+    
+    $opentracing_scope->close
+    
+    return ...
+}
+```
+
+### Inject a SpanContext into an outgoing request:
+
+```perl
+my $opentracing_spancontext = $TRACER->get_active_span->get_context;
+
+use HTTP::Headers;
+my $http_headers = HTTP::Headers->new( ... );
+
+$TRACER->inject_context( $opentracing_spancontext,
+    OPENTRACING_FORMAT_HTTP_HEADERS => $http_headers
+);
+
+my $request = HTTP::Request->new( GET => 'https://...', $headers);
+my response = LWP::UserAgent->request( $request );
+```
+
+### Extract a SpanContext from an incoming request
+
+```perl
+use YourFramework;
+
+get '/some_service' => sub {
+    my $http_headers = YourFramework->request->headers;
+    
+    my $opentracing_context = $TRACER->extract_context(
+        OPENTRACING_FORMAT_HTTP_HEADERS => $http_headers
+    );
+    
+    ...
+    
+}
+```
+
 ## About
 
 The interfaces being defined as roles
