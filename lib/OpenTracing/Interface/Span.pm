@@ -9,7 +9,7 @@ our $VERSION = '0.10';
 
 use Role::MethodReturns;
 
-use Types::Standard qw/ Str Maybe Value HashRef/;
+use Types::Standard qw/ Str Value HashRef ArrayRef/;
 use Types::Common::Numeric qw/PositiveNum/;
 
 
@@ -29,10 +29,15 @@ around overwrite_operation_name => instance_method ( Str $operation_name ) {
 };
 
 
-around finish => instance_method ( Maybe[PositiveNum] $epoch_timestamp = undef ) {
+around finish => instance_method ( @time_stamps ) {
+    
+    ( ArrayRef[PositiveNum, 0, 1 ] )->assert_valid( \@time_stamps );
+    #
+    # a bit narly construct, but otherwise we might have accidently introduced
+    # `undef` as an argument, where there used to be none!
     
     returns_self( $instance,
-        $original->( $instance => ( $epoch_timestamp ) )
+        $original->( $instance => ( @time_stamps ) )
     )
 };
 

@@ -59,11 +59,14 @@ my $opentracing_spancontext = $TRACER->get_active_span->get_context;
 use HTTP::Headers;
 my $http_headers = HTTP::Headers->new( ... );
 
-$TRACER->inject_context( $opentracing_spancontext,
-    OPENTRACING_FORMAT_HTTP_HEADERS => $http_headers
+my $cntx_headers = $TRACER->inject_context(
+    OPENTRACING_FORMAT_HTTP_HEADERS => $http_headers,
+    $opentracing_spancontext,
 );
 
-my $request = HTTP::Request->new( GET => 'https://...', $headers);
+my $request = HTTP::Request->new(
+    GET => 'https://...', $cntx_headers
+);
 my response = LWP::UserAgent->request( $request );
 ```
 

@@ -10,15 +10,15 @@ our $VERSION = '0.10';
 
 use Role::MethodReturns;
 
-use Types::Standard qw/ArrayRef Bool Dict HashRef Optional Str Undef/;
-use Types::Common::Numeric qw/PositiveNum/;
+use Types::Standard qw/Any ArrayRef Bool Dict HashRef Optional Str/;
+use Types::Common::Numeric qw/PositiveOrZeroNum/;
 use Types::Interface qw/ObjectDoesInterface/;
 
 
 
 around get_scope_manager => instance_method ( ) {
     
-    returns_maybe_object_does_interface( 'OpenTracing::Interface::ScopeManager',
+    returns_object_does_interface( 'OpenTracing::Interface::ScopeManager',
         
         $original->( $instance => ( ) )
         
@@ -43,14 +43,14 @@ around start_active_span => instance_method ( Str  $operation_name, %options ) {
     ( Dict[
         
         child_of                => Optional[
-            ObjectDoesInterface['OpenTracing::Interface::Span']        |
+            ObjectDoesInterface['OpenTracing::Interface::Span'] |
             ObjectDoesInterface['OpenTracing::Interface::SpanContext']
         ],
         references              => Optional[ ArrayRef[ ObjectDoesInterface[
                                         'OpenTracing::Interface::Reference'
                                    ]]],
         tags                    => Optional[ HashRef[ Str ] ],
-        start_time              => Optional[ PositiveNum ],
+        start_time              => Optional[ PositiveOrZeroNum ],
         ignore_active_span      => Optional[ Bool ],
         finish_span_on_close    => Optional[ Bool ],
         
@@ -69,14 +69,14 @@ around start_span => instance_method ( Str $operation_name, %options ) {
      ( Dict[
         
         child_of                => Optional[
-            ObjectDoesInterface['OpenTracing::Interface::Span']        |
+            ObjectDoesInterface['OpenTracing::Interface::Span'] |
             ObjectDoesInterface['OpenTracing::Interface::SpanContext']
         ],
         references              => Optional[ ArrayRef[ ObjectDoesInterface[
                                         'OpenTracing::Interface::Reference'
                                    ]]],
         tags                    => Optional[ HashRef[ Str ] ],
-        start_time              => Optional[ PositiveNum ],
+        start_time              => Optional[ PositiveOrZeroNum ],
         ignore_active_span      => Optional[ Bool ],
         
     ] )->assert_valid( \%options );
@@ -89,24 +89,20 @@ around start_span => instance_method ( Str $operation_name, %options ) {
 
 
 
-around inject_context => instance_method (
+around inject_context => instance_method ( $carrier_format, $carrier,
     (ObjectDoesInterface['OpenTracing::Interface::SpanContext']) $span_context,
-    $carrier_format,
-    $carrier
 ) {
     
-    returns( Undef,
+    returns( Any,
         
         $original->( $instance => ( $span_context, $carrier_format, $carrier ) )
         
-    );
-    
-    return # we do not really want it to return undef, as perl relies on context
+    )
 };
 
 
 
-around extract_context => instance_method ( ) {
+around extract_context => instance_method ( $carrier_format, $carrier ) {
     
     returns_maybe_object_does_interface( 'OpenTracing::Interface::SpanContext',
         
