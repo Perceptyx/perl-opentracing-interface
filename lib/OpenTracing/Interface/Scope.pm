@@ -10,19 +10,16 @@ our $VERSION = '0.10';
 
 use Role::MethodReturns;
 
-use Types::Standard qw/Undef/;
-
 
 
 around close => instance_method ( ) {
     
-    returns( Undef,
+    returns_self( $instance,
         
         $original->( $instance => ( ) )
         
     );
     
-    return # we do not really want it to return undef, as perl relies on context
 };
 
 
