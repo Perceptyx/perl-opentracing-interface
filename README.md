@@ -84,13 +84,20 @@ get '/some_service' => sub {
 }
 ```
 
-## About
+## Description
 
-The interfaces being defined as roles
-( using [Role::Tiny](https://metacpan.org/pod/Role::Tiny) )
-and use `around` method modifiers, instead of `require`, we do want to wrap the
-method in type checking
-( using [Type::Tiny](https://metacpan.org/pod/Type::Tiny) and friends ).
+This package - `OpenTracing::Interface` - describes the API definition for
+OpenTransport implementations written in the Perl5 language.
+
+This being Perl, and strongly influenced by TIMTOWDI principals, this package
+does not intent to be a base class that tracer implementors need to subclass.
+Moreover, the specification is written as POD. Write your own implementation
+however you want as long as it adheres to the written POD specification.
+
+A set of L<Role::Tiny> roles are provided, that can be consumed into your own
+implementations that will ensure that required methods are present. Those roles
+also do type checking ( using `Type::Tiny` and friends )on input params and
+returned values. Other than that, those roles do nothing and can be ignored.
 
 
 ## LICENSE INFORMATION
