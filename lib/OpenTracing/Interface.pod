@@ -16,15 +16,15 @@ more generally.
 
 =head1 SYNOPSIS
 
-=head2 Initialize the Tracer Singleton
+Initialize the Tracer Singleton
 
     use OpenTracing::Implementation qw/YourTracingService/;
 
-=head2 Access the Tracer Singleton
+Access the Tracer Singleton
 
     use OpenTracing::GlobalTracer qw/$TRACER/;
 
-=head2 Add a new span inside a subroutine
+Add a new span inside a subroutine
 
     sub some_work {
         my $opentracing_scope =
@@ -37,7 +37,7 @@ more generally.
         return ...
     }
 
-=head2 Inject a SpanContext into an outgoing request:
+Inject a SpanContext into an outgoing request:
 
     my $opentracing_spancontext = $TRACER->get_active_span->get_context;
     
@@ -51,7 +51,7 @@ more generally.
     my $request = HTTP::Request->new( GET => 'https://...', $headers);
     my response = LWP::UserAgent->request( $request );
 
-=head2 Extract a SpanContext from an incoming request
+Extract a SpanContext from an incoming request
 
     use YourFramework;
     
