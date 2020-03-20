@@ -24,6 +24,12 @@ Access the Tracer Singleton
 
     use OpenTracing::GlobalTracer qw/$TRACER/;
 
+Direct control over Tracing instead of using singletons
+
+    use YourImplementation::Tracer;
+    
+    my $TRACER = YourImplementation::Tracer->new( %options );
+
 Add a new span inside a subroutine
 
     sub some_work {

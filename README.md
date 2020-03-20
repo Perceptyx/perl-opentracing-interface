@@ -28,6 +28,14 @@ use OpenTracing::Implementation qw/YourTracingService/;
 use OpenTracing::GlobalTracer qw/$TRACER/;
 ```
 
+### Direct control over Tracing instead of using singletons
+
+```perl
+use YourImplementation::Tracer;
+
+my $TRACER = YourImplementation::Tracer->new( %options );
+```
+
 ### Add a new span inside a subroutine
 
 ```perl
