@@ -28,7 +28,7 @@ around new_child_of => class_method (
 
 
 
-aaround new_follows_from => class_method (
+around new_follows_from => class_method (
     (ObjectDoesInterface['OpenTracing::Interface::SpanContext']) $span_context,
 ) {
     (
