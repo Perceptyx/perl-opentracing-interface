@@ -27,62 +27,66 @@ OpenTracing::Interface::ScopeManager - A role that defines the ScopeManager
 This 'role' describes the interface for any OpenTracing ScopeManager
 implementation.
 
-The C<ScopeManager> interface abstracts both the activation of L<Span> instances
+The C<ScopeManager> interface abstracts both the activation of C<Span> instances
 via L<activate_Span> and access to an active C<Scope> via L<get_active_scope>.
 
 
 
-=head1 METHODS
+=head1 INSTANCE METHODS
 
 
 
-=head2 activate_span
+=head2 activate_span( $span, %options )
 
-Set the specified L<Span> as the active instance for the current context
+Set the specified C<Span> as the active instance for the current context
 (usually a thread).
 
-    my $span = $tracer->start_span( 'some operation', ignore_active_span => 1 );
+    my $span = $tracer->start_span( 'some operation'
+        ignore_active_span => 1
+    );
     
     my $manager = $tracer->get_scope_manager;
     
-    my $scope = $manager->activate_span( $span, finish_span_on_close => 0 );
+    my $scope = $manager->activate_span( $span,
+        finish_span_on_close => 0
+    );
 
-The returned L<Scope> represents the active state for the span. Once its active
-period is due, C<$scope->close()> ought to be called.
-Observe the span will be automatically finished when C<$scope->close()> is
+The returned C<Scope> represents the active state for the span. Once its active
+period is due, C<< $scope->close() >> ought to be called.
+Observe the span will be automatically finished when C<< $scope->close() >> is
 called.
 
-=head3 Positional Parameters
+=head3 Required Positional Parameters
 
 =over
 
 =item Span
 
-An object that does the <Span> interface.
+An object that does the C<Span> interface.
 
 =back
 
-=head3 Optional Dictionairy with Named Options
+=head3 Named Options
 
 =over
 
 =item finish_span_on_close
 
-A C<Bool> when set to false, the <Span> will not be automatically finished when
-the L<Scope> has been closed. This is 'true' by default.
+A C<Bool> when set to false, the C<Span> will not be automatically finished when
+the C<Scope> has been closed. This is 'true' by default.
 
 =back
 
 =head3 Returns
 
-An object that implements the L<Scope> interface.
+An object that implements the C<Scope> interface.
 
 
 
 =head2 get_active_scope
 
-Return the currently active L<Scope> which can be used to access the
-currently active L<Span>, using C<$scope->get_span>.
+Return the currently active C<Scope> which can be used to access the
+currently active C<Span>, using C<< $scope->get_span >>.
 
     my $manager = $tracer->get_scope_manager;
     
@@ -94,7 +98,7 @@ none
 
 =head3 Returns
 
-The L<Scope> that is currently active.
+The C<Scope> that is currently active.
 
 =cut
 
