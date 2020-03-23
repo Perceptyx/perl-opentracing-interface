@@ -9,6 +9,7 @@ lib/OpenTracing/Interface.pod
 lib/OpenTracing/Interface/Scope.pm
 lib/OpenTracing/Interface/Scope.pod
 lib/OpenTracing/Interface/ScopeManager.pm
+lib/OpenTracing/Interface/ScopeManager.pod
 lib/OpenTracing/Interface/Span.pm
 lib/OpenTracing/Interface/Span.pod
 lib/OpenTracing/Interface/SpanContext.pm
