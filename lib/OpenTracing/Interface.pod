@@ -96,6 +96,8 @@ returned values. Other than that, those roles do nothing and can be ignored.
 
 =head1 INDEX
 
+See L<OpenTracing::Types> for a quick overview all the public interface methods.
+
 See the following specifications:
 
 =over

@@ -1,8 +1,45 @@
 package OpenTracing::Types;
 
+
+
 =head1 NAME
 
 OpenTracing::Types - Type constraints for checking Interfaces
+
+=cut
+
+
+
+our $VERSION = '0.11';
+
+
+
+=head1 SYNOPSIS
+
+    use OpenTracing::Types qw/Span/;
+    #
+    # imports the 'Span' Type
+    
+    use Types::Standard qw/Maybe/;
+    use Types::Common::Numeric qw/PositiveOrZeroNum/;
+    
+    use Function::Parameters;
+    use Function::Return;
+    
+    # create a subroutine with some fancy type checks
+    #
+    sub time_gap (Span $span1, Span $span2) :Return Maybe[PositiveOrZeroNum] {
+        return unless $span1->finish_time and $span2->start_time;
+        return $span2->start_time - $span1->finish_time
+    }
+
+=head1 DESCRIPTION
+
+This library of L<Type::Tiny> type constraints provide Duck Type checks for all
+common elements that conform L<OpenTracing::Interface>
+
+See L<Type::Library/"Export"> about the various ways to import types an related
+methods.
 
 =cut
 
@@ -50,13 +87,136 @@ use constant {
 
 
 
-
 duck_type Reference    => REQUIRED_METHODS_FOR_REFERENCE;
 duck_type Scope        => REQUIRED_METHODS_FOR_SCOPE;
 duck_type ScopeManager => REQUIRED_METHODS_FOR_SCOPEMANAGER;
 duck_type Span         => REQUIRED_METHODS_FOR_SPAN;
 duck_type SpanContext  => REQUIRED_METHODS_FOR_SPANCONTEXT;
 duck_type Tracer       => REQUIRED_METHODS_FOR_TRACER;
+
+
+
+=head1 TYPES
+
+The following Duck Types are being defined with the mentioned required methods:
+
+=cut
+
+
+
+=head2 Reference
+
+=over
+
+=item new_child_of
+
+=item new_follows_from
+
+=item get_referenced_context
+
+=item type_is_child_of
+
+=item type_is_follows_from
+
+=back
+
+
+
+=head2 Scope
+
+=over
+
+=item close
+
+=item get_span
+
+=back
+
+
+
+=head2 ScopeManager
+
+=over
+
+=item activate_span
+
+=item get_active_scope
+
+=back
+
+
+
+=head2 Span
+
+=over
+
+=item get_context
+
+=item overwrite_operation_name
+
+=item finish
+
+=item set_tag
+
+=item log_data
+
+=item set_baggage_item
+
+=item get_baggage_item
+
+=back
+
+
+
+=head2 SpanContext
+
+=over
+
+=item get_baggage_item
+
+=item with_baggage_item
+
+=back
+
+
+
+=head2 Tracer
+
+=over
+
+=item get_scope_manager
+
+=item get_active_span
+
+=item start_active_span
+
+=item start_span
+
+=item inject_context
+
+=item extract_context
+
+=back
+
+=cut
+
+
+
+=head1 AUTHOR
+
+Theo van Hoesel <tvanhoesel@perceptyx.com>
+
+=head1 COPYRIGHT AND LICENSE
+
+'OpenTracing Types' is Copyright (C) 2020, Perceptyx Inc
+
+This library is free software; you can redistribute it and/or modify it under
+the terms of the Artistic License 2.0.
+
+This library is distributed in the hope that it will be useful, but it is
+provided "as is" and without any express or implied warranties.
+
+For details, see the full text of the license in the file LICENSE.
 
 
 
