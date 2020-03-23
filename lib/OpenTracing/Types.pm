@@ -46,6 +46,16 @@ methods.
 use Type::Library -base;
 use Type::Utils qw/duck_type/;
 
+# Dear developer, for the sake of testing, please DO NOT just copy paste the
+# methods from the `OpenTracing::Types` file. If I wanted to just
+# check that the `duck_type` utility from `Type::Tiny` would work, I would have
+# not needed this test.
+#
+# This test is to ensure that what is written in the POD files is indeed what
+# the Types library is doing.
+#
+# The OpenTracing::Interface::*.pod files are leading, not the code.
+#
 use constant {
     REQUIRED_METHODS_FOR_REFERENCE => [ qw(
         new_child_of
@@ -85,7 +95,7 @@ use constant {
     ) ],
 };
 
-
+# XXX DO NOT COPY PASTE FROM CODE, READ THE POD
 
 duck_type Reference    => REQUIRED_METHODS_FOR_REFERENCE;
 duck_type Scope        => REQUIRED_METHODS_FOR_SCOPE;
