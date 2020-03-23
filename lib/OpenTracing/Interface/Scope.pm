@@ -10,6 +10,7 @@ our $VERSION = '0.10';
 
 use Role::MethodReturns;
 
+use OpenTracing::Types qw/Span/;
 
 
 around close => instance_method ( ) {
@@ -26,7 +27,7 @@ around close => instance_method ( ) {
 
 around get_span => instance_method ( ) {
     
-    returns_object_does_interface( 'OpenTracing::Interface::Span' ,
+    returns( Span ,
         
         $original->( $instance => ( ) )
         

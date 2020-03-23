@@ -10,16 +10,16 @@ our $VERSION = '0.10';
 
 use Role::MethodReturns;
 
-use Types::Interface qw/ObjectDoesInterface/;
+use OpenTracing::Types qw/Reference SpanContext/;
 use Types::Standard qw/Bool/;
 
 
 
 around new_child_of => class_method (
-    (ObjectDoesInterface['OpenTracing::Interface::SpanContext']) $span_context
+    SpanContext $span_context
 ) {
     
-    returns_object_does_interface( 'OpenTracing::Interface::Reference' ,
+    returns( Reference ,
         
         $original->( $class => ( $span_context ) )
         
@@ -30,10 +30,10 @@ around new_child_of => class_method (
 
 
 around new_follows_from => class_method (
-    (ObjectDoesInterface['OpenTracing::Interface::SpanContext']) $span_context
+    SpanContext $span_context
 ) {
     
-    returns_object_does_interface( 'OpenTracing::Interface::Reference' ,
+    returns( Reference ,
         
         $original->( $class => ( $span_context ) )
         
@@ -45,7 +45,7 @@ around new_follows_from => class_method (
 
 around get_referenced_context => instance_method ( ) {
     
-    returns_object_does_interface( 'OpenTracing::Interface::SpanContext' ,
+    returns( SpanContext ,
         
         $original->( $instance => ( ) )
         

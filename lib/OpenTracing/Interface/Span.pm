@@ -9,13 +9,14 @@ our $VERSION = '0.10';
 
 use Role::MethodReturns;
 
+use OpenTracing::Types qw/SpanContext/;
 use Types::Standard qw/ Str Value HashRef ArrayRef/;
 use Types::Common::Numeric qw/PositiveNum/;
 
 
 around get_context => instance_method ( ) {
     
-    returns_object_does_interface( 'OpenTracing::Interface::SpanContext',
+    returns( SpanContext,
         $original->( $instance => ( ) )
     )
 };

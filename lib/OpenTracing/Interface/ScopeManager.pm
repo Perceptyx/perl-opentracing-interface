@@ -9,13 +9,13 @@ our $VERSION = '0.10';
 
 use Role::MethodReturns;
 
-use Types::Interface qw/ObjectDoesInterface/;
+use OpenTracing::Types qw/Scope Span/;
 use Types::Standard qw/Bool Dict Optional/;
 
 
 
 around activate_span => instance_method (
-    (ObjectDoesInterface['OpenTracing::Interface::Span']) $span,
+    Span $span,
     %options,
 ) {
     (
@@ -24,7 +24,7 @@ around activate_span => instance_method (
         ]
     )->assert_valid( \%options );
     
-    returns_object_does_interface( 'OpenTracing::Interface::Scope',
+    returns( Scope,
         $original->( $instance => %options )
     )
 
@@ -34,7 +34,7 @@ around activate_span => instance_method (
 
 around get_active_scope => instance_method ( ) {
     
-    returns_object_does_interface( 'OpenTracing::Interface::Scope',
+    returns( Scope,
         $original->( $instance => ( ) )
     )
 };

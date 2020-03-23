@@ -10,15 +10,14 @@ our $VERSION = '0.10';
 
 use Role::MethodReturns;
 
+use OpenTracing::Types qw/Reference Scope ScopeManager Span SpanContext/;
 use Types::Standard qw/Any ArrayRef Bool Dict HashRef Optional Str/;
 use Types::Common::Numeric qw/PositiveOrZeroNum/;
-use Types::Interface qw/ObjectDoesInterface/;
-
 
 
 around get_scope_manager => instance_method ( ) {
     
-    returns_object_does_interface( 'OpenTracing::Interface::ScopeManager',
+    returns( ScopeManager,
         
         $original->( $instance => ( ) )
         
@@ -29,7 +28,7 @@ around get_scope_manager => instance_method ( ) {
 
 around get_active_span => instance_method ( ) {
     
-    returns_maybe_object_does_interface( 'OpenTracing::Interface::Span',
+    returns_maybe( Span,
         
         $original->( $instance => ( ) )
         
@@ -43,12 +42,12 @@ around start_active_span => instance_method ( Str  $operation_name, %options ) {
     ( Dict[
         
         child_of                => Optional[
-            ObjectDoesInterface['OpenTracing::Interface::Span'] |
-            ObjectDoesInterface['OpenTracing::Interface::SpanContext']
+            Span |
+            SpanContext
         ],
-        references              => Optional[ ArrayRef[ ObjectDoesInterface[
-                                        'OpenTracing::Interface::Reference'
-                                   ]]],
+        references              => Optional[ ArrayRef[
+                                        Reference
+                                   ]],
         tags                    => Optional[ HashRef[ Str ] ],
         start_time              => Optional[ PositiveOrZeroNum ],
         ignore_active_span      => Optional[ Bool ],
@@ -56,7 +55,7 @@ around start_active_span => instance_method ( Str  $operation_name, %options ) {
         
     ] )->assert_valid( \%options );
     
-    returns_object_does_interface( 'OpenTracing::Interface::Scope',
+    returns( Scope,
     
         $original->( $instance => ( $operation_name, %options ) )
     )
@@ -69,19 +68,19 @@ around start_span => instance_method ( Str $operation_name, %options ) {
      ( Dict[
         
         child_of                => Optional[
-            ObjectDoesInterface['OpenTracing::Interface::Span'] |
-            ObjectDoesInterface['OpenTracing::Interface::SpanContext']
+            Span |
+            SpanContext
         ],
-        references              => Optional[ ArrayRef[ ObjectDoesInterface[
-                                        'OpenTracing::Interface::Reference'
-                                   ]]],
+        references              => Optional[ ArrayRef[
+                                        Reference
+                                   ]],
         tags                    => Optional[ HashRef[ Str ] ],
         start_time              => Optional[ PositiveOrZeroNum ],
         ignore_active_span      => Optional[ Bool ],
         
     ] )->assert_valid( \%options );
     
-    returns_object_does_interface( 'OpenTracing::Interface::Span',
+    returns( Span,
     
         $original->( $instance => ( $operation_name, %options ) )
     )
@@ -90,7 +89,7 @@ around start_span => instance_method ( Str $operation_name, %options ) {
 
 
 around inject_context => instance_method ( $carrier_format, $carrier,
-    (ObjectDoesInterface['OpenTracing::Interface::SpanContext']) $span_context,
+    SpanContext $span_context,
 ) {
     
     returns( Any,
@@ -104,7 +103,7 @@ around inject_context => instance_method ( $carrier_format, $carrier,
 
 around extract_context => instance_method ( $carrier_format, $carrier ) {
     
-    returns_maybe_object_does_interface( 'OpenTracing::Interface::SpanContext',
+    returns_maybe( SpanContext,
         
         $original->( $instance => ( ) )
         
