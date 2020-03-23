@@ -14,10 +14,8 @@ use Types::Standard qw/Bool Dict Optional/;
 
 
 
-around activate_span => instance_method (
-    Span $span,
-    %options,
-) {
+around activate_span => instance_method ( Span $span, %options, ) {
+    
     (
         Dict[
             finish_span_on_close => Optional[ Bool ],
@@ -27,7 +25,7 @@ around activate_span => instance_method (
     returns( Scope,
         $original->( $instance => %options )
     )
-
+    
 };
 
 
@@ -37,6 +35,7 @@ around get_active_scope => instance_method ( ) {
     returns( Scope,
         $original->( $instance => ( ) )
     )
+    
 };
 
 

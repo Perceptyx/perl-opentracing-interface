@@ -18,10 +18,9 @@ use Types::Common::Numeric qw/PositiveOrZeroNum/;
 around get_scope_manager => instance_method ( ) {
     
     returns( ScopeManager,
-        
         $original->( $instance => ( ) )
-        
     )
+    
 };
 
 
@@ -29,10 +28,9 @@ around get_scope_manager => instance_method ( ) {
 around get_active_span => instance_method ( ) {
     
     returns_maybe( Span,
-        
         $original->( $instance => ( ) )
-        
     )
+    
 };
 
 
@@ -41,13 +39,8 @@ around start_active_span => instance_method ( Str  $operation_name, %options ) {
     
     ( Dict[
         
-        child_of                => Optional[
-            Span |
-            SpanContext
-        ],
-        references              => Optional[ ArrayRef[
-                                        Reference
-                                   ]],
+        child_of                => Optional[ Span | SpanContext ],
+        references              => Optional[ ArrayRef[ Reference ]],
         tags                    => Optional[ HashRef[ Str ] ],
         start_time              => Optional[ PositiveOrZeroNum ],
         ignore_active_span      => Optional[ Bool ],
@@ -56,24 +49,19 @@ around start_active_span => instance_method ( Str  $operation_name, %options ) {
     ] )->assert_valid( \%options );
     
     returns( Scope,
-    
         $original->( $instance => ( $operation_name, %options ) )
     )
+    
 };
 
 
 
 around start_span => instance_method ( Str $operation_name, %options ) {
     
-     ( Dict[
+    ( Dict[
         
-        child_of                => Optional[
-            Span |
-            SpanContext
-        ],
-        references              => Optional[ ArrayRef[
-                                        Reference
-                                   ]],
+        child_of                => Optional[ Span | SpanContext ],
+        references              => Optional[ ArrayRef[ Reference ]],
         tags                    => Optional[ HashRef[ Str ] ],
         start_time              => Optional[ PositiveOrZeroNum ],
         ignore_active_span      => Optional[ Bool ],
@@ -93,10 +81,9 @@ around inject_context => instance_method ( $carrier_format, $carrier,
 ) {
     
     returns( Any,
-        
         $original->( $instance => ( $span_context, $carrier_format, $carrier ) )
-        
     )
+    
 };
 
 
@@ -104,10 +91,9 @@ around inject_context => instance_method ( $carrier_format, $carrier,
 around extract_context => instance_method ( $carrier_format, $carrier ) {
     
     returns_maybe( SpanContext,
-        
         $original->( $instance => ( ) )
-        
     )
+    
 };
 
 

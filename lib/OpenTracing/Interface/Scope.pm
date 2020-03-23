@@ -13,6 +13,7 @@ use Role::MethodReturns;
 use OpenTracing::Types qw/Span/;
 
 
+
 around close => instance_method ( ) {
     
     returns_self( $instance,
