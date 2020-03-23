@@ -1,4 +1,6 @@
 requires        'Role::MethodReturns';
+requires        'Type::Library';
+requires        'Type::Utils';
 requires        'Types::Common::Numeric';
 requires        'Types::Interface';
 requires        'Types::Standard';

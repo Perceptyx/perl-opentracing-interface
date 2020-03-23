@@ -64,7 +64,7 @@ None
 
 =head3 Returns
 
-An object that does L<OpenTracing::Interface::ScopeManager>
+An object of type C<ScopeManager> from L<OpenTracing::Types>.
 
 
 
@@ -74,7 +74,7 @@ This will return the 'active' span.
 
     my $span = $tracer->get_active_span;
 
-A shorthand for C<< $tracer->get_scope_manager->get_active_scope->get_span >>
+A shorthand for C<< $tracer->get_scope_manager->get_active_scope->get_span >>.
 
 =head3 Parameters
 
@@ -82,7 +82,7 @@ None
 
 =head3 Returns
 
-An object that does L<OpenTracing::Interface::Span> or C<undef> if there is no
+An object of type C<Span> from L<OpenTracing::Types> OR C<undef> if there is no
 active C<Scope>.
 
 
@@ -120,15 +120,15 @@ Starts AND activates a C<Span> and returns its C<Scope>.
 
 either
 
-an object that does L<OpenTracing::Interface::Span>
+An object of type C<Span> from L<OpenTracing::Types>.
 
 or
 
-an object that does L<OpenTracing::Interface::SpanContext>
+An object of type C<SpanContext> from L<OpenTracing::Types>.
 
 =item references
 
-an C<ArrayRef> of L<OpenTracing::Interface::Reference>
+an C<ArrayRef> of L<OpenTracing::Interface::Reference>s.
 
 =item tags
 
@@ -154,7 +154,7 @@ out of scope. This is 'true' by default.
 
 =head3 Returns
 
-An object that implements the L<OpenTracing::Interface::Scope> interface.
+An object of type C<Scope> from L<OpenTracing::Types>.
 
 =head3 Note
 
@@ -194,15 +194,15 @@ Starts, but does not activate a C<Span>
 
 either
 
-an object that does L<OpenTracing::Interface::Span>
+An object of type C<Span> from L<OpenTracing::Types>.
 
 or
 
-an object that does L<OpenTracing::Interface::SpanContext>
+An object of type C<SpanContex> from L<OpenTracing::Types>.
 
 =item references
 
-an C<ArrayRef> of L<OpenTracing::Interface::Reference>
+an C<ArrayRef> of L<OpenTracing::Interface::Reference>s
 
 =item tags
 
@@ -223,7 +223,7 @@ used.
 
 =head3 Returns
 
-An object that implements the L<OpenTracing::Interface::Span> interface.
+An object of type C<Span> from L<OpenTracing::Types>.
 
 =head3 Note
 
@@ -274,7 +274,7 @@ data.
 =item $span_context
 
 The C<SpanContext> containing the the information that needs to be added to the
-C<$carrier>
+C<$carrier>.
 
 =back
 
@@ -323,7 +323,7 @@ data.
 
 =head3 Returns
 
-An object that does L<OpenTracing::Interface::SpanContext>
+An object of type C<SpanContext> from L<OpenTracing::Types>.
 
 
 

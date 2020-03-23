@@ -65,7 +65,7 @@ Creates a C<SpanContext> C<Reference> for which L<type_is_child_of> is 'true'.
 
 The C<SpanContext> the returned C<Reference> should should refer to.
 
-Must be a C<ObjectDoesInterface['OpenTracing::Interface::SpanContext']>
+Must be a C<SpanContext> form L<OpenTracing::Types>.
 
 =back
 
@@ -89,7 +89,7 @@ Creates a C<SpanContext> C<Reference> for which L<type_is_follows_from> is
 
 The C<SpanContext> the returned C<Reference> should should refer to.
 
-Must be a C<ObjectDoesInterface['OpenTracing::Interface::SpanContext']>
+Must be a C<SpanContext> form L<OpenTracing::Types>.
 
 =back
 

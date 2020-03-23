@@ -6,6 +6,7 @@ examples/lib/App/Foo/types.pm
 examples/lib/App/Interface.pm
 lib/OpenTracing/Interface.pm
 lib/OpenTracing/Interface.pod
+lib/OpenTracing/Types.pm
 lib/OpenTracing/Interface/Scope.pm
 lib/OpenTracing/Interface/Scope.pod
 lib/OpenTracing/Interface/ScopeManager.pm
@@ -28,3 +29,12 @@ examples/MyTracer/Tracer.pm
 examples/README.txt
 README.md
 t/00_use_ok.t
+t/lib/MockUtils.pm
+t/lib/TestUtils.pm
+t/Types/00_use_ok.t
+t/Types/10_reference.t
+t/Types/10_scope.t
+t/Types/10_scope_manager.t
+t/Types/10_span_context.t
+t/Types/10_span.t
+t/Types/10_tracer.t

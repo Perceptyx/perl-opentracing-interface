@@ -77,7 +77,7 @@ none
 
 =head3 Returns
 
-An object that does the L<OpenTracing::Interface::SpanContext> role.
+An object of type C<SpanContext> from L<OpenTracing::Types>.
 
 
 
