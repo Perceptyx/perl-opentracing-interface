@@ -31,4 +31,4 @@ README.md
 t/00_use_ok.t
 t/lib/MockUtils.pm
 t/lib/TestUtils.pm
-
+t/Types/00_use_ok.t
