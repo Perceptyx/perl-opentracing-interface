@@ -6,6 +6,7 @@ examples/lib/App/Foo/types.pm
 examples/lib/App/Interface.pm
 lib/OpenTracing/Interface.pm
 lib/OpenTracing/Interface.pod
+lib/OpenTracing/Types.pm
 lib/OpenTracing/Interface/Scope.pm
 lib/OpenTracing/Interface/Scope.pod
 lib/OpenTracing/Interface/ScopeManager.pm
