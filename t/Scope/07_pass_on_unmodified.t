@@ -63,7 +63,7 @@ package MyTest::Scope;
 sub close {
     push @main::test_params, [ @_ ];
     
-    return
+    return shift;
     
 };
 
