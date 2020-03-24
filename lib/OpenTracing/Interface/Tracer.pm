@@ -35,7 +35,7 @@ around get_active_span => instance_method ( ) {
 
 
 
-around start_active_span => instance_method ( Str  $operation_name, %options ) {
+around start_active_span => instance_method ( Str  $operation_name, @options ) {
     
     ( Dict[
         
@@ -46,17 +46,17 @@ around start_active_span => instance_method ( Str  $operation_name, %options ) {
         ignore_active_span      => Optional[ Bool ],
         finish_span_on_close    => Optional[ Bool ],
         
-    ] )->assert_valid( \%options );
+    ] )->assert_valid( { @options } );
     
     returns( Scope,
-        $original->( $instance => ( $operation_name, %options ) )
+        $original->( $instance => ( $operation_name, @options ) )
     )
     
 };
 
 
 
-around start_span => instance_method ( Str $operation_name, %options ) {
+around start_span => instance_method ( Str $operation_name, @options ) {
     
     ( Dict[
         
@@ -66,22 +66,22 @@ around start_span => instance_method ( Str $operation_name, %options ) {
         start_time              => Optional[ PositiveOrZeroNum ],
         ignore_active_span      => Optional[ Bool ],
         
-    ] )->assert_valid( \%options );
+    ] )->assert_valid( { @options } );
     
     returns( Span,
     
-        $original->( $instance => ( $operation_name, %options ) )
+        $original->( $instance => ( $operation_name, @options ) )
     )
 };
 
 
 
 around inject_context => instance_method ( $carrier_format, $carrier,
-    SpanContext $span_context,
+    SpanContext $span_context
 ) {
     
     returns( Any,
-        $original->( $instance => ( $span_context, $carrier_format, $carrier ) )
+        $original->( $instance => ( $carrier_format, $carrier, $span_context ) )
     )
     
 };
@@ -91,7 +91,7 @@ around inject_context => instance_method ( $carrier_format, $carrier,
 around extract_context => instance_method ( $carrier_format, $carrier ) {
     
     returns_maybe( SpanContext,
-        $original->( $instance => ( ) )
+        $original->( $instance => ( $carrier_format, $carrier ) )
     )
     
 };

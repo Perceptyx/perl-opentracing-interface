@@ -10,13 +10,14 @@ our $VERSION = '0.10';
 
 use Role::MethodReturns;
 
+use OpenTracing::Types qw/SpanContext/;
 use Types::Standard qw/Str Value/;
 
 
 
 around get_baggage_item => instance_method ( Str $key ) {
     
-    maybe_returns( Value,
+    returns_maybe( Value,
         $original->( $instance => ( $key ) )
     )
     
@@ -26,7 +27,7 @@ around get_baggage_item => instance_method ( Str $key ) {
 
 around with_baggage_item => instance_method ( Str $key, Str $value ) {
     
-    returns_object_does_interface( __PACKAGE__ ,
+    returns( SpanContext ,
         $original->( $instance => ( $key, $value ) )
     )
     

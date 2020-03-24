@@ -60,12 +60,12 @@ around set_tag => instance_method ( Str $key, Value $value ) {
 
 
 
-around log_data => instance_method ( %log_data ) {
+around log_data => instance_method ( @log_data ) {
     
-    ( HashRef[ Value ] )->assert_valid( \%log_data );
+    ( HashRef[ Value ] )->assert_valid( { @log_data } );
     
     returns_self( $instance,
-        $original->( $instance => ( %log_data ) )
+        $original->( $instance => ( @log_data ) )
     )
     
 };

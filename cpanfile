@@ -1,4 +1,5 @@
 requires        'Role::MethodReturns';
+requires        'Type::Tiny', '>= 1.006';
 requires        'Type::Library';
 requires        'Type::Utils';
 requires        'Types::Common::Numeric';
