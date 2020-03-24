@@ -24,7 +24,7 @@ subtest "pass on arguments for 'close'" => sub {
     
     cmp_deeply(
         \@test_params => [
-            [ obj_isa('MyTest::Scope') ],
+            [ $test_object ],
         ],
         "... and the original subroutine gets the expected arguments"
     );
@@ -45,7 +45,7 @@ subtest "pass on arguments for 'get_span'" => sub {
     
     cmp_deeply(
         \@test_params => [
-            [ obj_isa('MyTest::Scope') ],
+            [ $test_object ],
         ],
         "... and the original subroutine gets the expected arguments"
     );
@@ -70,7 +70,7 @@ sub close {
 sub get_span {
     push @main::test_params, [ @_ ];
     
-    return bless {}, 'MyTest::Span'
+    return bless {}, 'MyDuck::Span'
     
 };
 
@@ -81,7 +81,7 @@ BEGIN {
 
 
 
-package MyTest::Span;
+package MyDuck::Span;
 
 sub get_context;
 sub overwrite_operation_name;
@@ -90,11 +90,6 @@ sub set_tag;
 sub log_data;
 sub set_baggage_item;
 sub get_baggage_item;
-
-BEGIN {
-    use Role::Tiny::With;
-    with 'OpenTracing::Interface::Span'
-}
 
 
 

@@ -18,25 +18,25 @@ subtest "pass on arguments for 'activate_span'" => sub {
     
     my $test_object = bless {}, 'MyTest::ScopeManager';
     
-    my $mock_span = bless {}, 'MyTest::Span';
+    my $duck_span = bless {}, 'MyDuck::Span';
     
     lives_ok {
-        $test_object->activate_span( $mock_span )
+        $test_object->activate_span( $duck_span )
     } "Can call method 'activate_span'";
     
     lives_ok {
-        $test_object->activate_span( $mock_span, finish_span_on_close => 1 )
+        $test_object->activate_span( $duck_span, finish_span_on_close => 1 )
     } "... can call 'activate_span' with 'finish_span_on_close'";
     
     cmp_deeply(
         \@test_params => [
             [
-                obj_isa('MyTest::ScopeManager'),
-                obj_isa('MyTest::Span'),
+                $test_object,
+                $duck_span,
             ],
             [
-                obj_isa('MyTest::ScopeManager'),
-                obj_isa('MyTest::Span'),
+                $test_object,
+                $duck_span,
                 finish_span_on_close => 1,
             ],
         ],
@@ -59,7 +59,7 @@ subtest "pass on arguments for 'get_active_scope'" => sub {
     
     cmp_deeply(
         \@test_params => [
-            [ obj_isa('MyTest::ScopeManager') ],
+            [ $test_object ],
         ],
         "... and the original subroutine gets the expected arguments"
     );
@@ -77,14 +77,14 @@ package MyTest::ScopeManager;
 sub activate_span {
     push @main::test_params, [ @_ ];
     
-    return bless {}, 'MyTest::Scope'
+    return bless {}, 'MyDuck::Scope'
     
 };
 
 sub get_active_scope {
     push @main::test_params, [ @_ ];
     
-    return bless {}, 'MyTest::Scope'
+    return bless {}, 'MyDuck::Scope'
     
 };
 
@@ -95,19 +95,14 @@ BEGIN {
 
 
 
-package MyTest::Scope;
+package MyDuck::Scope;
 
 sub close;
 sub get_span;
 
-BEGIN {
-    use Role::Tiny::With;
-    with 'OpenTracing::Interface::Scope'
-}
 
 
-
-package MyTest::Span;
+package MyDuck::Span;
 
 sub get_context;
 sub overwrite_operation_name;
@@ -116,11 +111,6 @@ sub set_tag;
 sub log_data;
 sub set_baggage_item;
 sub get_baggage_item;
-
-BEGIN {
-    use Role::Tiny::With;
-    with 'OpenTracing::Interface::Span'
-}
 
 
 
