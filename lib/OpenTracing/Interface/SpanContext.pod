@@ -98,6 +98,26 @@ A cloned object that MUST implement this interface.
 
 
 
+=head1 SEE ALSO
+
+=over
+
+=item L<OpenTracing::Interface>
+
+Describes the API definition for OpenTransport implementations written in the
+Perl5 language.
+
+=item L<OpenTracing::Types>
+
+A library of L<Type::Tiny> type constraints that provides Duck Type checks for
+all common elements that conform L<OpenTracing::Interface>
+
+=back
+
+=cut
+
+
+
 =head1 CAVEATS
 
 This description is using C<around> method modifiers that basically wraps them
