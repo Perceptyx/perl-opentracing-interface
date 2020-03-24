@@ -79,7 +79,7 @@ Extract a SpanContext from an incoming request
 
 =head1 DESCRIPTION
 
-This package - <OpenTracing::Interface> - describes the API definition for
+This package - C<OpenTracing::Interface> - describes the API definition for
 OpenTransport implementations written in the Perl5 language.
 
 This being Perl, and strongly influenced by TIMTOWDI principals, this package
@@ -119,17 +119,17 @@ via C<activate_span> and access to an active C<Scope> via C<get_active_scope>.
 
 =item L<OpenTracing::Interface::Span>
 
-Span represents a unit of work executed on behalf of a trace.
+A C<Span> represents a unit of work executed on behalf of a C<Trace>.
 
 =item L<OpenTracing::Interface::SpanContext>
 
-SpanContext represents C<Span> state that must propagate to descendant C<Span>'s
-and across process boundaries.
+A C<SpanContext> represents C<Span> state that must be propagated to descendant
+C<Span>'s and across process boundaries.
 
 =item L<OpenTracing::Interface::Tracer>
 
-Tracer is the entry point API between instrumentation code and the tracing
-implementation.
+The C<Tracer> is the entry point API between instrumentation code and the
+tracing implementation.
 
 =back
 
