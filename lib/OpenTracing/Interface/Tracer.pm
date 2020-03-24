@@ -81,7 +81,7 @@ around inject_context => instance_method ( $carrier_format, $carrier,
 ) {
     
     returns( Any,
-        $original->( $instance => ( $span_context, $carrier_format, $carrier ) )
+        $original->( $instance => ( $carrier_format, $carrier, $span_context ) )
     )
     
 };
@@ -91,7 +91,7 @@ around inject_context => instance_method ( $carrier_format, $carrier,
 around extract_context => instance_method ( $carrier_format, $carrier ) {
     
     returns_maybe( SpanContext,
-        $original->( $instance => ( ) )
+        $original->( $instance => ( $carrier_format, $carrier ) )
     )
     
 };
