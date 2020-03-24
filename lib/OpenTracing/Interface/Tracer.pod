@@ -128,7 +128,7 @@ An object of type C<SpanContext> from L<OpenTracing::Types>.
 
 =item references
 
-an C<ArrayRef> of L<OpenTracing::Interface::Reference>s.
+an C<ArrayRef> of C<Reference> type objects.
 
 =item tags
 
@@ -202,7 +202,7 @@ An object of type C<SpanContex> from L<OpenTracing::Types>.
 
 =item references
 
-an C<ArrayRef> of L<OpenTracing::Interface::Reference>s
+an C<ArrayRef> of C<Reference> type objects.
 
 =item tags
 
@@ -324,6 +324,26 @@ data.
 =head3 Returns
 
 An object of type C<SpanContext> from L<OpenTracing::Types>.
+
+
+
+=head1 SEE ALSO
+
+=over
+
+=item L<OpenTracing::Interface>
+
+Describes the API definition for OpenTransport implementations written in the
+Perl5 language.
+
+=item L<OpenTracing::Types>
+
+A library of L<Type::Tiny> type constraints that provides Duck Type checks for
+all common elements that conform L<OpenTracing::Interface>
+
+=back
+
+=cut
 
 
 

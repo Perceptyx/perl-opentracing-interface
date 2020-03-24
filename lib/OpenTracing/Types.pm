@@ -114,99 +114,113 @@ The following Duck Types are being defined with the mentioned required methods:
 
 
 
-=head2 Reference
+=head2 C<< Reference >>
 
 =over
 
-=item new_child_of
+=item C<< new_child_of >>
 
-=item new_follows_from
+=item C<< new_follows_from >>
 
-=item get_referenced_context
+=item C<< get_referenced_context >>
 
-=item type_is_child_of
+=item C<< type_is_child_of >>
 
-=item type_is_follows_from
+=item C<< type_is_follows_from >>
 
 =back
 
+See also L<OpenTracing::Interface::Reference/"INSTANCE METHODS">
+and L<OpenTracing::Interface::Reference/"CONSTRUCTOR METHODS">.
 
 
-=head2 Scope
+
+=head2 C<< Scope >>
 
 =over
 
-=item close
+=item C<< close >>
 
-=item get_span
+=item C<< get_span >>
 
 =back
 
+See also L<OpenTracing::Interface::Scope/"INSTANCE METHODS">.
 
 
-=head2 ScopeManager
+
+=head2 C<< ScopeManager >>
 
 =over
 
-=item activate_span
+=item C<< activate_span >>
 
-=item get_active_scope
+=item C<< get_active_scope >>
 
 =back
 
+See also L<OpenTracing::Interface::ScopeManager/"INSTANCE METHODS">.
 
 
-=head2 Span
+=head2 C<< Span >>
 
 =over
 
-=item get_context
+=item C<< get_context >>
 
-=item overwrite_operation_name
+=item C<< overwrite_operation_name >>
 
-=item finish
+=item C<< finish >>
 
-=item set_tag
+=item C<< set_tag >>
 
-=item log_data
+=item C<< log_data >>
 
-=item set_baggage_item
+=item C<< set_baggage_item >>
 
-=item get_baggage_item
+=item C<< get_baggage_item >>
 
 =back
 
+See also L<OpenTracing::Interface::Span/"INSTANCE METHODS">.
 
 
-=head2 SpanContext
+
+=head2 C<< SpanContext >>
 
 =over
 
-=item get_baggage_item
+=item C<< get_baggage_item >>
 
-=item with_baggage_item
+=item C<< with_baggage_item >>
 
 =back
 
+See also L<OpenTracing::Interface::SpanContext/"INSTANCE METHODS">.
 
 
-=head2 Tracer
+
+=head2 C<< Tracer >>
 
 =over
 
-=item get_scope_manager
+=item C<< get_scope_manager >>
 
-=item get_active_span
+=item C<< get_active_span >>
 
-=item start_active_span
+=item C<< start_active_span >>
 
-=item start_span
+=item C<< start_span >>
 
-=item inject_context
+=item C<< inject_context >>
 
-=item extract_context
+=item C<< extract_context >>
 
 =back
+
+See also L<OpenTracing::Interface::Tracer/"INSTANCE METHODS">.
+
+
 
 =cut
 
@@ -227,8 +241,3 @@ This library is distributed in the hope that it will be useful, but it is
 provided "as is" and without any express or implied warranties.
 
 For details, see the full text of the license in the file LICENSE.
-
-
-
-1;
-
