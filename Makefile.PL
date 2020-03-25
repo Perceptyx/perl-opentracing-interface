@@ -13,7 +13,7 @@ WriteMakefile(
             => 'blib/man3/opentracing.3',
         'lib/OpenTracing/Types.pod'
             => 'blib/man3/opentracing_types.3',
-        'lib/OpenTracing/Interface/Reference.pod'
+        'lib/OpenTracing/Interface/ContextReference.pod'
             => 'blib/man3/opentracing_interface_reference.3',
         'lib/OpenTracing/Interface/Scope.pod'
             => 'blib/man3/opentracing_interface_scope.3',
@@ -29,21 +29,21 @@ WriteMakefile(
     'META_MERGE'    => {
         provides        => {
             'OpenTracing::Interface'
-                => { version => '0.13', file => 'lib/OpenTracing/Interface.pm' },
-            'OpenTracing::Interface::Reference'
-                => { version => '0.13', file => 'lib/OpenTracing/Interface/Reference.pm' },
+                => { version => '0.14', file => 'lib/OpenTracing/Interface.pm' },
+            'OpenTracing::Interface::ContextReference'
+                => { version => '0.14', file => 'lib/OpenTracing/Interface/ContextReference.pm' },
             'OpenTracing::Interface::Scope'
-                => { version => '0.13', file => 'lib/OpenTracing/Interface/Scope.pm' },
+                => { version => '0.14', file => 'lib/OpenTracing/Interface/Scope.pm' },
             'OpenTracing::Interface::ScopeManager'
-                => { version => '0.13', file => 'lib/OpenTracing/Interface/ScopeManager.pm' },
+                => { version => '0.14', file => 'lib/OpenTracing/Interface/ScopeManager.pm' },
             'OpenTracing::Interface::Span'
-                => { version => '0.13', file => 'lib/OpenTracing/Interface/Span.pm' },
+                => { version => '0.14', file => 'lib/OpenTracing/Interface/Span.pm' },
             'OpenTracing::Interface::SpanContext'
-                => { version => '0.13', file => 'lib/OpenTracing/Interface/SpanContext.pm' },
+                => { version => '0.14', file => 'lib/OpenTracing/Interface/SpanContext.pm' },
             'OpenTracing::Interface::Tracer'
-                => { version => '0.13', file => 'lib/OpenTracing/Interface/Tracer.pm' },
+                => { version => '0.14', file => 'lib/OpenTracing/Interface/Tracer.pm' },
             'OpenTracing::Types'
-                => { version => '0.13', file => 'lib/OpenTracing/Types.pm' },
+                => { version => '0.14', file => 'lib/OpenTracing/Types.pm' },
         },
         description => '`OpenTracing::Interface` describes the OpenTracing API'
               . '  ' . 'for the Perl5 programming language.'

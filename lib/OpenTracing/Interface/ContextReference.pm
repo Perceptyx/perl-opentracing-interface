@@ -1,23 +1,23 @@
-package OpenTracing::Interface::Reference;
+package OpenTracing::Interface::ContextReference;
 
 
 use strict;
 use warnings;
 
 
-our $VERSION = '0.13';
+our $VERSION = '0.14';
 
 
 use Role::MethodReturns;
 
-use OpenTracing::Types qw/Reference SpanContext/;
+use OpenTracing::Types qw/ContextReference SpanContext/;
 use Types::Standard qw/Bool/;
 
 
 
 around new_child_of => class_method ( SpanContext $span_context ) {
     
-    returns( Reference ,
+    returns( ContextReference ,
         $original->( $class => ( $span_context ) )
     );
     
@@ -27,7 +27,7 @@ around new_child_of => class_method ( SpanContext $span_context ) {
 
 around new_follows_from => class_method ( SpanContext $span_context ) {
     
-    returns( Reference ,
+    returns( ContextReference ,
         $original->( $class => ( $span_context ) )
     )
     

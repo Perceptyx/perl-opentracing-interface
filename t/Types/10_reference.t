@@ -22,7 +22,7 @@ use warnings;
 # The OpenTracing::Interface::*.pod files are leading, not the code.
 #
 use constant {
-    CLASS_NAME       => 'Reference',
+    CLASS_NAME       => 'ContextReference',
     REQUIRED_METHODS => [ qw(
         new_child_of
         new_follows_from
