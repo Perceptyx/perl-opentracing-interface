@@ -55,10 +55,25 @@ subtest "pass on arguments for 'start_active_span'" => sub {
     my $reference_1  = bless {}, 'MyDuck::Reference';
     my $reference_2  = bless {}, 'MyDuck::Reference';
     
+    # the options 'child_of' and 'references' are mutual exclusive
+    # so we test those separatly
+    
     lives_ok {
         $test_object->start_active_span( 'here is an operation name' =>
             child_of             => $span_context,
+        )
+    } "Can call method 'start_active_span' with option 'child_of'";
+    
+    lives_ok {
+        $test_object->start_active_span( 'here is an operation name' =>
             references           => [ $reference_1, $reference_2 ],
+        )
+    } "Can call method 'start_active_span' with option 'references'";
+    
+    lives_ok {
+        $test_object->start_active_span( 'here is an operation name' =>
+#           child_of             => $span_context,
+#           references           => [ $reference_1, $reference_2 ],
             tags                 => {
                 tag_1                => 'value 1',
                 tag_2                => 'value 2',
@@ -67,7 +82,7 @@ subtest "pass on arguments for 'start_active_span'" => sub {
             ignore_active_span   => 1,
             finish_span_on_close => 0,
         )
-    } "Can call method 'start_active_span' with all named options";
+    } "Can call method 'start_active_span' with other named options";
     
     cmp_deeply(
         \@test_params => [
@@ -76,11 +91,19 @@ subtest "pass on arguments for 'start_active_span'" => sub {
                 'here is an operation name',
                 'child_of',
                 $span_context,
+            ],
+            [
+                $test_object,
+                'here is an operation name',
                 'references',
                 [
                     $reference_1,
                     $reference_2,
                 ],
+            ],
+            [
+                $test_object,
+                'here is an operation name',
                 'tags',
                 {
                     tag_1 => 'value 1',
@@ -124,10 +147,25 @@ subtest "pass on arguments for 'start_span'" => sub {
     my $reference_1  = bless {}, 'MyDuck::Reference';
     my $reference_2  = bless {}, 'MyDuck::Reference';
     
+    # the options 'child_of' and 'references' are mutual exclusive
+    # so we test those separatly
+    
     lives_ok {
         $test_object->start_span( 'here is an operation name' =>
             child_of             => $span_context,
+        )
+    } "Can call method 'start_span' with option 'child_of'";
+    
+    lives_ok {
+        $test_object->start_span( 'here is an operation name' =>
             references           => [ $reference_1, $reference_2 ],
+        )
+    } "Can call method 'start_span' with option 'references'";
+    
+    lives_ok {
+        $test_object->start_span( 'here is an operation name' =>
+#           child_of             => $span_context,
+#           references           => [ $reference_1, $reference_2 ],
             tags                 => {
                 tag_1                => 'value 1',
                 tag_2                => 'value 2',
@@ -135,7 +173,7 @@ subtest "pass on arguments for 'start_span'" => sub {
             start_time           => 123.45,
             ignore_active_span   => 1,
         )
-    } "Can call method 'start_span' with all named options";
+    } "Can call method 'start_span' with other named options";
     
     cmp_deeply(
         \@test_params => [
@@ -144,11 +182,19 @@ subtest "pass on arguments for 'start_span'" => sub {
                 'here is an operation name',
                 'child_of',
                 $span_context,
+            ],
+            [
+                $test_object,
+                'here is an operation name',
                 'references',
                 [
                     $reference_1,
                     $reference_2,
                 ],
+            ],
+            [
+                $test_object,
+                'here is an operation name',
                 'tags',
                 {
                     tag_1 => 'value 1',
