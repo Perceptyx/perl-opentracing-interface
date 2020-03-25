@@ -14,6 +14,8 @@ use OpenTracing::Types qw/Reference Scope ScopeManager Span SpanContext/;
 use Types::Standard qw/Any ArrayRef Bool Dict HashRef Optional Str/;
 use Types::Common::Numeric qw/PositiveOrZeroNum/;
 
+use Carp;
+
 
 around get_scope_manager => instance_method ( ) {
     
@@ -37,6 +39,9 @@ around get_active_span => instance_method ( ) {
 
 around start_active_span => instance_method ( Str  $operation_name, @options ) {
     
+    croak "'child_of' and 'references' are mutual exclusive options"
+        if exists { @options }->{child_of} && exists { @options }->{references};
+    
     ( Dict[
         
         child_of                => Optional[ Span | SpanContext ],
@@ -57,6 +62,9 @@ around start_active_span => instance_method ( Str  $operation_name, @options ) {
 
 
 around start_span => instance_method ( Str $operation_name, @options ) {
+    
+    croak "'child_of' and 'references' are mutual exclusive options"
+        if exists { @options }->{child_of} && exists { @options }->{references};
     
     ( Dict[
         

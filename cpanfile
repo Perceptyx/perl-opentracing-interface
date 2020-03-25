@@ -1,3 +1,4 @@
+requires        'Carp';
 requires        'Role::MethodReturns';
 requires        'Type::Tiny', '>= 1.006';
 requires        'Type::Library';

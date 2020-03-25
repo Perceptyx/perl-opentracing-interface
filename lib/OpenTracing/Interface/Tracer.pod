@@ -158,7 +158,7 @@ An object of type C<Scope> from L<OpenTracing::Types>.
 
 =head3 Note
 
-C<child_of> and C<references> should be mutual exclusive.
+C<child_of> and C<references> are mutual exclusive.
 
 
 
@@ -227,7 +227,7 @@ An object of type C<Span> from L<OpenTracing::Types>.
 
 =head3 Note
 
-C<child_of> and C<references> should be mutual exclusive.
+C<child_of> and C<references> are mutual exclusive.
 
 
 
