@@ -13,7 +13,7 @@ WriteMakefile(
             => 'blib/man3/opentracing.3',
         'lib/OpenTracing/Types.pod'
             => 'blib/man3/opentracing_types.3',
-        'lib/OpenTracing/Interface/Reference.pod'
+        'lib/OpenTracing/Interface/ContextReference.pod'
             => 'blib/man3/opentracing_interface_reference.3',
         'lib/OpenTracing/Interface/Scope.pod'
             => 'blib/man3/opentracing_interface_scope.3',
@@ -30,8 +30,8 @@ WriteMakefile(
         provides        => {
             'OpenTracing::Interface'
                 => { version => '0.13', file => 'lib/OpenTracing/Interface.pm' },
-            'OpenTracing::Interface::Reference'
-                => { version => '0.13', file => 'lib/OpenTracing/Interface/Reference.pm' },
+            'OpenTracing::Interface::ContextReference'
+                => { version => '0.13', file => 'lib/OpenTracing/Interface/ContextReference.pm' },
             'OpenTracing::Interface::Scope'
                 => { version => '0.13', file => 'lib/OpenTracing/Interface/Scope.pm' },
             'OpenTracing::Interface::ScopeManager'
