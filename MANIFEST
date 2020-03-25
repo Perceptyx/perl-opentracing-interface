@@ -44,7 +44,7 @@ t/Interface/SpanContext/07_pass_on_unmodified.t
 t/Interface/Tracer/00_use_ok.t
 t/Interface/Tracer/07_pass_on_unmodified.t
 t/Types/00_use_ok.t
-t/Types/10_reference.t
+t/Types/10_context_reference.t
 t/Types/10_scope.t
 t/Types/10_scope_manager.t
 t/Types/10_span.t
