@@ -56,6 +56,19 @@ subtest "pass on arguments for 'start_active_span'" => sub {
     my $reference_2  = bless {}, 'MyDuck::Reference';
     
     # the options 'child_of' and 'references' are mutual exclusive
+    # so we test those separatly
+    
+    lives_ok {
+        $test_object->start_active_span( 'here is an operation name' =>
+            child_of             => $span_context,
+        )
+    } "Can call method 'start_active_span' with option 'child_of'";
+    
+    lives_ok {
+        $test_object->start_active_span( 'here is an operation name' =>
+            references           => [ $reference_1, $reference_2 ],
+        )
+    } "Can call method 'start_active_span' with option 'references'";
     
     lives_ok {
         $test_object->start_active_span( 'here is an operation name' =>
@@ -73,6 +86,21 @@ subtest "pass on arguments for 'start_active_span'" => sub {
     
     cmp_deeply(
         \@test_params => [
+            [
+                $test_object,
+                'here is an operation name',
+                'child_of',
+                $span_context,
+            ],
+            [
+                $test_object,
+                'here is an operation name',
+                'references',
+                [
+                    $reference_1,
+                    $reference_2,
+                ],
+            ],
             [
                 $test_object,
                 'here is an operation name',
@@ -120,6 +148,19 @@ subtest "pass on arguments for 'start_span'" => sub {
     my $reference_2  = bless {}, 'MyDuck::Reference';
     
     # the options 'child_of' and 'references' are mutual exclusive
+    # so we test those separatly
+    
+    lives_ok {
+        $test_object->start_span( 'here is an operation name' =>
+            child_of             => $span_context,
+        )
+    } "Can call method 'start_span' with option 'child_of'";
+    
+    lives_ok {
+        $test_object->start_span( 'here is an operation name' =>
+            references           => [ $reference_1, $reference_2 ],
+        )
+    } "Can call method 'start_span' with option 'references'";
     
     lives_ok {
         $test_object->start_span( 'here is an operation name' =>
@@ -136,6 +177,21 @@ subtest "pass on arguments for 'start_span'" => sub {
     
     cmp_deeply(
         \@test_params => [
+            [
+                $test_object,
+                'here is an operation name',
+                'child_of',
+                $span_context,
+            ],
+            [
+                $test_object,
+                'here is an operation name',
+                'references',
+                [
+                    $reference_1,
+                    $reference_2,
+                ],
+            ],
             [
                 $test_object,
                 'here is an operation name',
