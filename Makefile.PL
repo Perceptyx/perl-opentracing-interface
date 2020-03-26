@@ -10,21 +10,21 @@ WriteMakefile(
     'LICENSE'       => 'artistic2',
     'MAN3PODS'      => {
         'lib/OpenTracing/Interface.pod'
-            => 'blib/man3/opentracing.3',
-        'lib/OpenTracing/Types.pod'
-            => 'blib/man3/opentracing_types.3',
+            => 'blib/man3/OpenTracing::Interface.3',
+        'lib/OpenTracing/Types.pm'
+            => 'blib/man3/OpenTracing::types.3',
         'lib/OpenTracing/Interface/ContextReference.pod'
-            => 'blib/man3/opentracing_interface_reference.3',
+            => 'blib/man3/OpenTracing::Interface::ContextReference.3',
         'lib/OpenTracing/Interface/Scope.pod'
-            => 'blib/man3/opentracing_interface_scope.3',
+            => 'blib/man3/OpenTracing::Interface::Scope.3',
         'lib/OpenTracing/Interface/ScopeManager.pod'
-            => 'blib/man3/opentracing_interface_scopemanager.3',
+            => 'blib/man3/OpenTracing::Interface::Scopemanager.3',
         'lib/OpenTracing/Interface/Span.pod'
-            => 'blib/man3/opentracing_interface_span.3',
+            => 'blib/man3/OpenTracing::Interface::Span.3',
         'lib/OpenTracing/Interface/SpanContext.pod'
-            => 'blib/man3/opentracing_interface_spancontext.3',
+            => 'blib/man3/OpenTracing::Interface::SpanContext.3',
         'lib/OpenTracing/Interface/Tracer.pod'
-            => 'blib/man3/opentracing_interface_tracer.3',
+            => 'blib/man3/OpenTracing::Interface::Tracer.3',
     },
     'META_MERGE'    => {
         provides        => {
