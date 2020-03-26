@@ -5,7 +5,7 @@ OpenTracing::Interface::ContextReference - Defines the ContextReference
 
 =head1 SYNOPSIS
 
-    package OpenTracing::Implementation::MyBackendService::Scope;
+    package OpenTracing::Implementation::MyBackendService::ContextReference;
         
     sub new_child_of {
         ...
