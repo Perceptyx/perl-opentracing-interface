@@ -1,7 +1,7 @@
 
 =head1 NAME
 
-OpenTracing::Interface::Reference - Defines the ContextReference interface
+OpenTracing::Interface::ContextReference - Defines the ContextReference
 
 =head1 SYNOPSIS
 
