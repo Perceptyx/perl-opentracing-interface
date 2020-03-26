@@ -5,7 +5,7 @@ WriteMakefile(
     'AUTHOR'        => [
         'Theo van Hoesel (VANHOESEL) <tvanhoesel@perceptyx.com'
     ],
-    'VERSION_FROM'  => 'lib/OpenTracing/Interface.pm',
+    'VERSION'       => '0.14',
     'ABSTRACT_FROM' => 'lib/OpenTracing/Interface.pod',
     'LICENSE'       => 'artistic2',
     'MAN3PODS'      => {
@@ -28,8 +28,6 @@ WriteMakefile(
     },
     'META_MERGE'    => {
         provides        => {
-            'OpenTracing::Interface'
-                => { version => '0.14', file => 'lib/OpenTracing/Interface.pm' },
             'OpenTracing::Interface::ContextReference'
                 => { version => '0.14', file => 'lib/OpenTracing/Interface/ContextReference.pm' },
             'OpenTracing::Interface::Scope'

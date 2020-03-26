@@ -2,6 +2,10 @@
 
 OpenTracing::Interface - API definition for OpenTransport implementations
 
+=head1 VERSION
+
+0.14
+
 =head1 DESCRIPTION
 
 =head2 Required Reading
