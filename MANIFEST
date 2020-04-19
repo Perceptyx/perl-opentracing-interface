@@ -15,6 +15,7 @@ examples/lib/App/Foo.pm
 examples/lib/App/Foo/interface.pm
 examples/lib/App/Foo/types.pm
 examples/lib/App/Interface.pm
+lib/OpenTracing/Interface.pm
 lib/OpenTracing/Interface.pod
 lib/OpenTracing/Interface/ContextReference.pm
 lib/OpenTracing/Interface/ContextReference.pod
