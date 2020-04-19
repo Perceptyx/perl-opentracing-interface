@@ -28,6 +28,8 @@ WriteMakefile(
     },
     'META_MERGE'    => {
         provides        => {
+            'OpenTracing::Interface'
+                => { version => '0.16', file => 'lib/OpenTracing/Interface.pm' },
             'OpenTracing::Interface::ContextReference'
                 => { version => '0.16', file => 'lib/OpenTracing/Interface/ContextReference.pm' },
             'OpenTracing::Interface::Scope'
@@ -64,7 +66,7 @@ WriteMakefile(
         ],
     },
     test => {
-        'TESTS'         => 't/*.t t/Interface/*/*.t t/Types/*.t',
+        'TESTS'         => 't/*.t t/Interface/*/*.t t/Interface/*.t t/Types/*.t',
     },
     
 );
