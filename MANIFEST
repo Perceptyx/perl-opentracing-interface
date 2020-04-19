@@ -30,6 +30,8 @@ lib/OpenTracing/Interface/SpanContext.pod
 lib/OpenTracing/Interface/Tracer.pm
 lib/OpenTracing/Interface/Tracer.pod
 lib/OpenTracing/Types.pm
+t/Interface/00_use_ok.t
+t/Interface/01_warnings.t
 t/Interface/ContextReference/00_use_ok.t
 t/Interface/ContextReference/07_pass_on_unmodified.t
 t/Interface/Scope/00_use_ok.t
