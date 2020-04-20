@@ -1,6 +1,12 @@
 CHANGE LOG
 ==========
 
+2020-04-20 v0.18
+----------------
+
+Add 'dummy' `OpenTracing/Interface.pm` to satisfy StratoPAN
+
+
 2020-04-19 v0.17
 ----------------
 
