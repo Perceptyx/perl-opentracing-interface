@@ -32,7 +32,7 @@ around activate_span => instance_method ( Span $span, @options, ) {
 
 around get_active_scope => instance_method ( ) {
     
-    returns( Scope,
+    returns_maybe( Scope,
         $original->( $instance => ( ) )
     )
     
