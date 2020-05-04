@@ -7,7 +7,7 @@ BEGIN {
 Do not 'use' "OpenTracing::Interface" !!!
 
 it does not provide anything!
-check the documnentationon how to consume the roles provided
+check the documentation on how to consume the roles provided
 END_OF_MESSAGE
 
 }
