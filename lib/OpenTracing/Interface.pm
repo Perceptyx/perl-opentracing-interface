@@ -12,6 +12,6 @@ END_OF_MESSAGE
 
 }
 
-our $VERSION = "0.18";
+our $VERSION = "0.19";
 
 1;
