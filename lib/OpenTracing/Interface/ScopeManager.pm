@@ -12,6 +12,7 @@ use Role::MethodReturns;
 use OpenTracing::Types qw/Scope Span/;
 use Types::Standard qw/Bool Dict Optional/;
 
+use namespace::clean;
 
 
 around activate_span => instance_method ( Span $span, @options, ) {

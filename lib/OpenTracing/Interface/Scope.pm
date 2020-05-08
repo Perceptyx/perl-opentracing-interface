@@ -12,6 +12,7 @@ use Role::MethodReturns;
 
 use OpenTracing::Types qw/Span/;
 
+use namespace::clean;
 
 
 around close => instance_method ( ) {

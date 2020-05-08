@@ -13,7 +13,7 @@ use Role::MethodReturns;
 use OpenTracing::Types qw/SpanContext/;
 use Types::Standard qw/Str Value/;
 
-
+use namespace::clean;
 
 around get_baggage_item => instance_method ( Str $key ) {
     
