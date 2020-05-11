@@ -5,6 +5,7 @@ requires        'Type::Library';
 requires        'Type::Utils';
 requires        'Types::Common::Numeric';
 requires        'Types::Standard';
+requires        'namespace::clean';
 
 
 on 'develop' => sub {

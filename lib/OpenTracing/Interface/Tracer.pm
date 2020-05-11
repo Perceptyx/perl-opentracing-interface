@@ -16,6 +16,7 @@ use Types::Common::Numeric qw/PositiveOrZeroNum/;
 
 use Carp;
 
+use namespace::clean;
 
 around get_scope_manager => instance_method ( ) {
     

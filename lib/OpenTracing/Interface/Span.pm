@@ -13,6 +13,7 @@ use OpenTracing::Types qw/SpanContext/;
 use Types::Standard qw/ Str Value HashRef ArrayRef/;
 use Types::Common::Numeric qw/PositiveNum/;
 
+use namespace::clean;
 
 
 around get_context => instance_method ( ) {
