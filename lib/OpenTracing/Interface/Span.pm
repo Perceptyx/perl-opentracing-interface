@@ -7,89 +7,57 @@ use warnings;
 our $VERSION = '0.20';
 
 
-use Role::MethodReturns;
+use Role::Declare -lax;
 
 use OpenTracing::Types qw/SpanContext/;
-use Types::Standard qw/ Str Value HashRef ArrayRef/;
-use Types::Common::Numeric qw/PositiveNum/;
+use Types::Standard qw/Str Value HashRef ArrayRef Maybe/;
+use Types::Common::Numeric qw/PositiveNum PositiveOrZeroNum/;
 
 use namespace::clean;
 
 
-around get_context => instance_method ( ) {
-    
-    returns( SpanContext,
-        $original->( $instance => ( ) )
-    )
-    
-};
+instance_method get_context(
+) :Return(SpanContext) {}
 
 
 
-around overwrite_operation_name => instance_method ( Str $operation_name ) {
-    
-    returns_self( $instance,
-        $original->( $instance => ( $operation_name ) )
-    )
-    
-};
+instance_method overwrite_operation_name(
+    Str $operation_name
+) :ReturnSelf {}
 
 
 
-around finish => instance_method ( @time_stamps ) {
-    
-    ( ArrayRef[PositiveNum, 0, 1 ] )->assert_valid( \@time_stamps );
-    #
-    # a bit narly construct, but otherwise we might have accidently introduced
-    # `undef` as an argument, where there used to be none!
-    
-    returns_self( $instance,
-        $original->( $instance => ( @time_stamps ) )
-    )
-    
-};
+instance_method finish(
+    Maybe[PositiveOrZeroNum] $time_stamp,
+) :ReturnSelf {}
 
 
 
-around set_tag => instance_method ( Str $key, Value $value ) {
-    
-    returns_self( $instance,
-        $original->( $instance => ( $key, $value ) )
-    )
-    
-};
+instance_method set_tag(
+    Str $key,
+    Value $value
+) :ReturnSelf {}
 
 
 
-around log_data => instance_method ( @log_data ) {
-    
+instance_method log_data(
+    @log_data
+) :ReturnSelf {
     ( HashRef[ Value ] )->assert_valid( { @log_data } );
-    
-    returns_self( $instance,
-        $original->( $instance => ( @log_data ) )
-    )
-    
-};
+}
 
 
 
-around set_baggage_item => instance_method ( Str $key, Value $value, ) {
-    
-    returns_self( $instance,
-        $original->( $instance => ( $key, $value ) )
-    )
-    
-};
+instance_method set_baggage_item(
+    Str $key,
+    Value $value
+) :ReturnSelf {}
 
 
 
-around get_baggage_item => instance_method ( Str $key ) {
-    
-    returns_maybe ( Value,
-        $original->( $instance => ( $key ) )
-    )
-    
-};
+instance_method get_baggage_item(
+    Str $key
+) :ReturnMaybe(Value) {}
 
 
 
