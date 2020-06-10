@@ -29,6 +29,7 @@ lib/OpenTracing/Interface/SpanContext.pm
 lib/OpenTracing/Interface/SpanContext.pod
 lib/OpenTracing/Interface/Tracer.pm
 lib/OpenTracing/Interface/Tracer.pod
+lib/OpenTracing/Propagation/Formats.pm
 lib/OpenTracing/Types.pm
 t/Interface/00_use_ok.t
 t/Interface/01_warning.t
