@@ -23,7 +23,7 @@ instance_method activate_span(
 
 
 instance_method get_active_scope(
-) :Return(Scope) {}
+) :ReturnMaybe(Scope) {}
 
 
 
