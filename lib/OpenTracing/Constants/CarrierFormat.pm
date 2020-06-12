@@ -1,4 +1,4 @@
-package OpenTracing::Propagation::Formats;
+package OpenTracing::Constants::CarrierFormat;
 use strict;
 use warnings;
 use parent 'Exporter';
