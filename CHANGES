@@ -1,6 +1,14 @@
 CHANGE LOG
 ==========
 
+
+2020-06-13 v0.201.0
+-------------------
+
+Fix return type for `get_active_scope`
+Add OPENTRACING_CARRIER_FORMAT_* constants
+
+
 2020-06-13 v0.200.0
 -------------------
 
