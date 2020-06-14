@@ -10,7 +10,8 @@ our $VERSION = 'v0.201.2';
 use Role::Declare -lax;
 
 use OpenTracing::Types qw/SpanContext/;
-use Types::Standard qw/Str Value HashRef ArrayRef Maybe/;
+use Time::HiRes qw/time/;
+use Types::Standard qw/Any Str Value HashRef ArrayRef Maybe Str Value/;
 use Types::Common::Numeric qw/PositiveNum PositiveOrZeroNum/;
 
 use namespace::clean;
@@ -28,36 +29,57 @@ instance_method overwrite_operation_name(
 
 
 instance_method finish(
-    Maybe[PositiveOrZeroNum] $time_stamp,
+    PositiveOrZeroNum $time_stamp = time(),
 ) :ReturnSelf {}
 
 
 
-instance_method set_tag(
+instance_method add_tag(
     Str $key,
     Value $value
 ) :ReturnSelf {}
 
 
 
-instance_method log_data(
-    @log_data
+instance_method add_tags(
+    %key_values,
 ) :ReturnSelf {
-    ( HashRef[ Value ] )->assert_valid( { @log_data } );
+    ( HashRef[Value] )->assert_valid( {%key_values} )
 }
 
 
 
-instance_method set_baggage_item(
+instance_method log_data(
+    %key_values
+) :ReturnSelf {
+    ( HashRef[ Value ] )->assert_valid( { %key_values } );
+}
+
+
+
+instance_method add_baggage_item(
     Str $key,
     Value $value
 ) :ReturnSelf {}
+
+
+
+instance_method add_baggage_items(
+    %key_values,
+) :ReturnSelf {
+    ( HashRef[Value] )->assert_valid( {%key_values} )
+}
 
 
 
 instance_method get_baggage_item(
     Str $key
 ) :ReturnMaybe(Value) {}
+
+
+
+instance_method get_baggage_items(
+) :ReturnList(Any) {}
 
 
 
