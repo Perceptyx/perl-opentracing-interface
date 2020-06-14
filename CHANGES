@@ -2,6 +2,14 @@ CHANGE LOG
 ==========
 
 
+2020-06-14 v0.202.0 BREAKING CHANGE
+-----------------------------------
+
+Rename and add methods
+- The names for `set_tag` and `set_baggage_item` have been changed to `add_...`
+- Added plural versions for method related to `tags` and `baggage_items`
+
+
 2020-06-14 v0.201.2
 -------------------
 

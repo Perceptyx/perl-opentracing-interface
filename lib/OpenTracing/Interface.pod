@@ -81,6 +81,10 @@ Extract a SpanContext from an incoming request
     }
 
 
+=head1 WARNING
+
+THIS IS A BREAKING CHANGE COMPARED TO THE PREVIOUS VERSION (v0.201.x) AND
+EARLIER VERSIONS.
 
 =head1 DESCRIPTION
 
