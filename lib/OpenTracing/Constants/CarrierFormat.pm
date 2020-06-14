@@ -14,20 +14,23 @@ our @EXPORT_OK   = Package::Constants->list(__PACKAGE__);
 our %EXPORT_TAGS = (ALL => \@EXPORT_OK);
 
 1;
+
 __END__
+
 =pod
 
 =head1 NAME
 
-OpenTracing::Propagation::Formats - constants for carrier formats
+OpenTracing::Constants::CarrierFormat - constants for carrier formats
 
 =head1 SYNOPSIS
 
-  use OpenTracing::Propagation::Formats ':ALL';
+    use OpenTracing::Constants::CarrierFormat ':ALL';
 
 or just the ones you need:
 
-  use OpenTracing::Propagation::Formats qw/OPENTRACING_CARRIER_FORMAT_HTTP_HEADERS/;
+    use OpenTracing::Constants::CarrierFormat
+        qw/OPENTRACING_CARRIER_FORMAT_HTTP_HEADERS/;
 
 =head1 CONSTANTS
 
