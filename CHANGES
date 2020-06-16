@@ -2,6 +2,12 @@ CHANGE LOG
 ==========
 
 
+2020-06-15 v0.203.0
+-------------------
+
+Remove 'getters' from the opaque API, only implementations need them internally
+
+
 2020-06-15 v0.202.2
 -------------------
 
