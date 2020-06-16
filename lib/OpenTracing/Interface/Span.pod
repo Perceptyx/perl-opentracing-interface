@@ -95,7 +95,9 @@ I<none>
 
 =item Returns
 
-=over C<SpanContext>
+=over
+
+=item C<SpanContext>
 
 The current (possibly changed> span context.
 

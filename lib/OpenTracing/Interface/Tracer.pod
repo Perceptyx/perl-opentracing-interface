@@ -114,6 +114,10 @@ I<none>
 
 An span object or C<undef> if there is no active scope.
 
+=back
+
+=back
+
 
 
 =head2 C<start_active_span>
@@ -330,6 +334,10 @@ carrier.
 A B<cloned> version of the carrier with the - for the implementation relevent -
 injected context items.
 
+=back
+
+=back
+
 
 
 =head2 C<extract_context>
@@ -371,7 +379,7 @@ data.
 
 =back
 
-=head3 Returns
+=item Returns
 
 =over
 
