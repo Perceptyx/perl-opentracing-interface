@@ -17,11 +17,6 @@ use Types::Common::Numeric qw/PositiveNum PositiveOrZeroNum/;
 use namespace::clean;
 
 
-instance_method get_context(
-) :Return(SpanContext) {}
-
-
-
 instance_method overwrite_operation_name(
     Str $operation_name
 ) :ReturnSelf {}
@@ -69,17 +64,6 @@ instance_method add_baggage_items(
 ) :ReturnSelf {
     ( HashRef[Value] )->assert_valid( {%key_values} )
 }
-
-
-
-instance_method get_baggage_item(
-    Str $key
-) :ReturnMaybe(Value) {}
-
-
-
-instance_method get_baggage_items(
-) :ReturnList(Any) {}
 
 
 
