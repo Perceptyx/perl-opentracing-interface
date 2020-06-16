@@ -235,7 +235,7 @@ sub get_baggage_item {
 sub get_baggage_items {
     push @main::test_params, [ @_ ];
     
-    return 'this is a baggage item value - what ever'
+    return 'some key', 'this is a baggage item value - what ever'
     
 };
 
@@ -249,7 +249,9 @@ BEGIN {
 package MySyub::SpanContext;
 
 sub get_baggage_item;
+sub get_baggage_items;
 sub with_baggage_item;
+sub with_baggage_items;
 
 
 
