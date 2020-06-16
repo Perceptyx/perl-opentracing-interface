@@ -204,6 +204,13 @@ sub add_tags {
     
 };
 
+sub get_tags {
+    push @main::test_params, [ @_ ];
+    
+    return 'some key', 'this is tag value - what ever'
+    
+};
+
 sub log_data {
     push @main::test_params, [ @_ ];
     

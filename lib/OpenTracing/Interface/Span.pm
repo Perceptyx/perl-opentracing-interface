@@ -49,6 +49,11 @@ instance_method add_tags(
 
 
 
+instance_method get_tags(
+) :ReturnList(Any) {}
+
+
+
 instance_method log_data(
     %key_values
 ) :ReturnSelf {

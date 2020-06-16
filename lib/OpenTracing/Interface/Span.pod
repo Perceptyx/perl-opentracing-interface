@@ -29,6 +29,10 @@ OpenTracing::Interface::Span - A role that defines the Span interface
         ...
     }
     
+    sub get_tags {
+        ...
+    }
+    
     sub log_data {
         ...
     }
@@ -234,6 +238,38 @@ Adds multiple tags to the span at the same time.
     );
 
 See L<< C<add_tag> >> above.
+
+
+
+=head2 C<get_tags>
+
+This will return a Hash of key/value pairs.
+
+    my %tags = $span->get_tags;
+
+It will return an empty list if there is no key/value pairs set.
+
+=over
+
+=item Positional Parameter(s)
+
+=over
+
+I<none>
+
+=back
+
+=item Returns
+
+=over
+
+=item C<Hash>
+
+A list of key/value pairs, not a hash reference!
+
+=back
+
+=back
 
 
 
