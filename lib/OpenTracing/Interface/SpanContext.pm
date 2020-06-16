@@ -16,6 +16,16 @@ use Types::Standard qw/Any HashRef Str Value/;
 use namespace::clean;
 
 
+instance_method get_baggage_item(
+    Str $key
+) :ReturnMaybe(Value) {}
+
+
+
+instance_method get_baggage_items(
+) :ReturnList (Any) {}
+
+
 
 instance_method with_baggage_item(
     Str $key,
