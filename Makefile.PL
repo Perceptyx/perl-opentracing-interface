@@ -18,7 +18,7 @@ WriteMakefile(
         'lib/OpenTracing/Interface/Scope.pod'
             => 'blib/man3/OpenTracing::Interface::Scope.3',
         'lib/OpenTracing/Interface/ScopeManager.pod'
-            => 'blib/man3/OpenTracing::Interface::Scopemanager.3',
+            => 'blib/man3/OpenTracing::Interface::ScopeManager.3',
         'lib/OpenTracing/Interface/Span.pod'
             => 'blib/man3/OpenTracing::Interface::Span.3',
         'lib/OpenTracing/Interface/SpanContext.pod'
