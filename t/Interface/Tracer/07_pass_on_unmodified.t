@@ -229,19 +229,31 @@ subtest "pass on arguments for 'inject_context'" => sub {
     my $carrier      = bless {}, 'MySyub::Carrier'; # nope, does not exists
     
     lives_ok {
-        $test_object->inject_context(
-            CARRIER_FORMAT => $carrier,
-            $span_context
-        )
-    } "Can call method 'inject_context'";
+        $test_object->inject_context( $carrier, $span_context )
+    } "Can call method 'inject_context' with a context";
     
     cmp_deeply(
         \@test_params => [
             [
                 $test_object,
-                'CARRIER_FORMAT',
                 $carrier,
                 $span_context,
+            ],
+        ],
+        "... and the original subroutine gets the expected arguments"
+    );
+    
+    undef @test_params;
+    
+    lives_ok {
+        $test_object->inject_context( $carrier )
+    } "Can call method 'inject_context' without context";
+    
+    cmp_deeply(
+        \@test_params => [
+            [
+                $test_object,
+                $carrier,
             ],
         ],
         "... and the original subroutine gets the expected arguments"
@@ -260,16 +272,13 @@ subtest "pass on arguments for 'extract_context'" => sub {
     my $carrier      = bless {}, 'MySyub::Carrier'; # nope, does not exists
     
     lives_ok {
-        $test_object->extract_context(
-            CARRIER_FORMAT => $carrier
-        )
+        $test_object->extract_context( $carrier )
     } "Can call method 'extract_context'";
     
     cmp_deeply(
         \@test_params => [
             [
                 $test_object,
-                'CARRIER_FORMAT',
                 $carrier
             ],
         ],
