@@ -14,6 +14,8 @@ use OpenTracing::Types qw/ContextReference Scope ScopeManager Span SpanContext/;
 use Types::Standard qw/ArrayRef Bool Dict HashRef Maybe Object Str/;
 use Types::Common::Numeric qw/PositiveOrZeroNum/;
 
+use constant Carrier => Object | HashRef | ArrayRef;
+
 use Carp;
 
 use namespace::clean;
@@ -60,16 +62,14 @@ instance_method start_span(
 
 
 instance_method inject_context(
-    Str    $carrier_format,
-    Object $carrier,
-    SpanContext $span_context
-) :Return(Object) {}
+    Carrier $carrier,
+    Maybe[ SpanContext ] $span_context = undef,
+) :Return(Carrier) {} # a clone preferably
 
 
 
 instance_method extract_context(
-    Str    $carrier_format,
-    Object $carrier
+    Carrier $carrier,
 ) :ReturnMaybe(SpanContext) {}
 
 
