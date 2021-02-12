@@ -1,6 +1,11 @@
 CHANGE LOG
 ==========
 
+2021-02-12 v0.206.1
+-------------------
+
+Fix problems with argument count when under STRICT, use '-lax'
+
 
 2021-02-12 v0.206.0
 -------------------
