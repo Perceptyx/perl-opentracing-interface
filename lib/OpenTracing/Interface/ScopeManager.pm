@@ -7,7 +7,7 @@ use warnings;
 our $VERSION = 'v0.205.0';
 
 
-use Role::Declare -lax;
+use Role::Declare::Should;
 
 use OpenTracing::Types qw/Scope Span/;
 use Types::Standard qw/Bool Dict Optional/;
