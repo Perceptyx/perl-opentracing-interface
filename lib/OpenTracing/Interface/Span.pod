@@ -56,7 +56,6 @@ OpenTracing::Interface::Span - A role that defines the Span interface
     BEGIN {
         use Role::Tiny::With;
         with 'OpenTracing::Interface::Span'
-            if $ENV{OPENTRACING_INTERFACE};
     } # check at compile time, perl -c will work
     
     1;

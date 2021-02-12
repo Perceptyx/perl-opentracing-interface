@@ -18,7 +18,6 @@ OpenTracing::Interface::ScopeManager - A role that defines the ScopeManager
     BEGIN {
         use Role::Tiny::With;
         with 'OpenTracing::Interface::ScopeManager'
-            if $ENV{OPENTRACING_INTERFACE};
     } # check at compile time, perl -c will work
     
     1;

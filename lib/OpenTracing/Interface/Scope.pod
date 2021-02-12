@@ -18,7 +18,6 @@ OpenTracing::Interface::Scope - A role that defines the Scope interface
     BEGIN {
         use Role::Tiny::With;
         with 'OpenTracing::Interface::Scope'
-            if $ENV{OPENTRACING_INTERFACE};
     } # check at compile time, perl -c will work
     
     1;

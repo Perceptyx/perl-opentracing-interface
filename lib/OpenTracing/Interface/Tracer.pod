@@ -34,7 +34,6 @@ OpenTracing::Interface::Tracer - A role that defines the Tracer interface
     BEGIN {
         use Role::Tiny::With;
         with 'OpenTracing::Interface::Tracer'
-            if $ENV{OPENTRACING_INTERFACE};
     } # check at compile time, perl -c will work
     
     1;
