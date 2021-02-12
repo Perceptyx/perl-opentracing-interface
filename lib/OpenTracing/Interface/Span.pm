@@ -7,7 +7,7 @@ use warnings;
 our $VERSION = 'v0.206.0';
 
 
-use Role::Declare::Should;
+use Role::Declare::Should -lax;
 
 use OpenTracing::Types qw/SpanContext/;
 use Time::HiRes qw/time/;

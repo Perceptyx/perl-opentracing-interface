@@ -28,7 +28,6 @@ OpenTracing::Interface::SpanContext - A role that defines the SpanContext interf
     BEGIN {
         use Role::Tiny::With;
         with 'OpenTracing::Interface::SpanContext'
-            if $ENV{OPENTRACING_INTERFACE};
     } # check at compile time, perl -c will work
     
     1;

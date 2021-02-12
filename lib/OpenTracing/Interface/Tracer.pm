@@ -8,7 +8,7 @@ use warnings;
 our $VERSION = 'v0.206.0';
 
 
-use Role::Declare::Should;
+use Role::Declare::Should -lax; # so missing named parameters default to undef
 
 use OpenTracing::Types qw/ContextReference Scope ScopeManager Span SpanContext/;
 use Types::Standard qw/ArrayRef Bool Dict HashRef Maybe Object Str/;
