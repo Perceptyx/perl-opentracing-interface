@@ -101,6 +101,9 @@ implementations that will ensure that required methods are present. Those roles
 also do type checking ( using L<Type::Tiny> and friends ) on input params and
 returned values. Other than that, those roles do nothing and can be ignored.
 
+Type constraints in these declarations are only checked under 'STRICT' (See
+L<Devel::Strict>).
+
 For convenience and those that desire type-checks, there is also a
 L<OpenTracing::Types> library build upon L<Type::Libray> using
 L<"Duck Typing"|Type::Tiny::Duck>.
