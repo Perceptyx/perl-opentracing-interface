@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 
-our $VERSION = 'v0.205.0';
+our $VERSION = 'v0.206.0';
 
 
 use Role::Declare::Should;
